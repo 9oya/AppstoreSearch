@@ -1,0 +1,26 @@
+PODS:
+  - RIBs (0.9.1):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+
+DEPENDENCIES:
+  - RIBs (~> 0.9)
+  - RxCocoa
+  - RxSwift
+
+SPEC REPOS:
+  trunk:
+    - RIBs
+    - RxCocoa
+    - RxSwift
+
+SPEC CHECKSUMS:
+  RIBs: 879184fbca567425c488d6b3d14a9c5abfbf9d47
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+
+PODFILE CHECKSUM: af823bb8e8bdfd0bffda9028e1586591745a8376
+
+COCOAPODS: 1.10.0.beta.2
