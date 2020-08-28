@@ -17,4 +17,60 @@ final class KeywordService: KeywordServiceProtocol {
         self.managedObjContext = coreDataStack.mainContext
         self.coreDataStack = coreDataStack
     }
+    
+    // MARK: - CREATE Services
+    func createKeyword(title: String, timeStamp: Date) -> Keyword {
+        let keyword = Keyword(context: managedObjContext)
+        keyword.title = title
+        keyword.timeStamp = timeStamp
+        keyword.score = 1
+        
+        managedObjContext.perform {
+            self.coreDataStack.saveContext(self.managedObjContext)
+        }
+        return keyword
+    }
+    
+    // MARK: - GET Services
+    func getKeywordByMatchingTitle(title: String) -> Keyword? {
+        let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(Keyword.title), title])
+        let keywords: [Keyword]?
+        do {
+            keywords = try managedObjContext.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+        return keywords?.first
+    }
+    
+    func getKeywordsByContainTitle(title: String) -> [Keyword]? {
+        let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
+        let scoreSort = NSSortDescriptor(key: #keyPath(Keyword.score), ascending: false)
+        let titleSort = NSSortDescriptor(key: #keyPath(Keyword.title), ascending: true)
+        let timeSort = NSSortDescriptor(key: #keyPath(Keyword.timeStamp), ascending: true)
+        
+        fetchRequest.sortDescriptors = [scoreSort, titleSort, timeSort]
+        fetchRequest.predicate = NSPredicate(format: "title contains[c] %@", title)
+        
+        let keywords: [Keyword]?
+        do {
+            keywords = try managedObjContext.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+        return keywords
+    }
+    
+    // MARK: - UPDATE Services
+    func updateKeywordScoreByMatchingTitle(title: String) -> Keyword? {
+        guard let keyword = getKeywordByMatchingTitle(title: title) else {
+            return nil
+        }
+        keyword.score += 1
+        managedObjContext.perform {
+            self.coreDataStack.saveContext(self.managedObjContext)
+        }
+        return keyword
+    }
 }

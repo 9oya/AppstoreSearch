@@ -47,7 +47,61 @@ class KeywordServiceTests: XCTestCase {
             XCTAssertNil(error, "Save did not occur")
         }
     }
+    
+    func testKeyword_getKeywordsByTitle_resultCount() {
+        // given
+        _ = mockKeywordService.createKeyword(title: "카카오뱅", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
+        
+        // when
+        let keywords = mockKeywordService.getKeywordsByContainTitle(title: "카카오뱅")
+        
+        // than
+        XCTAssertEqual(keywords?.count, 6)
+    }
 
+    func testKeyword_updateKeywordByTitle_resultValue() {
+        // given
+        let title = "카카오뱅"
+        _ = mockKeywordService.createKeyword(title: title, timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
+        
+        // when
+        guard let keyword = mockKeywordService.updateKeywordScoreByMatchingTitle(title: title) else {
+            fatalError()
+        }
+        
+        // than
+        XCTAssertGreaterThan(keyword.score, 1)
+    }
+    
+    func testKeyword_getKeywordsByTitle_resultOrder() {
+        // given
+        let title = "카카오뱅"
+        _ = mockKeywordService.createKeyword(title: title, timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
+        guard let _ = mockKeywordService.updateKeywordScoreByMatchingTitle(title: title) else {
+            fatalError()
+        }
+        
+        // when
+        let keywords = mockKeywordService.getKeywordsByContainTitle(title: title)
+        
+        // than
+        XCTAssertEqual(keywords?.first?.title, title)
+    }
 }
 
 class MockKeywordService: KeywordServiceProtocol {
@@ -67,6 +121,49 @@ class MockKeywordService: KeywordServiceProtocol {
         keyword.timeStamp = timeStamp
         keyword.score = 1
         
+        managedObjContext.perform {
+            self.coreDataStack.saveContext(self.managedObjContext)
+        }
+        return keyword
+    }
+    
+    // MARK: - GET Services
+    func getKeywordByMatchingTitle(title: String) -> Keyword? {
+        let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(Keyword.title), title])
+        let keywords: [Keyword]?
+        do {
+            keywords = try managedObjContext.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+        return keywords?.first
+    }
+    
+    func getKeywordsByContainTitle(title: String) -> [Keyword]? {
+        let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
+        let scoreSort = NSSortDescriptor(key: #keyPath(Keyword.score), ascending: false)
+        let titleSort = NSSortDescriptor(key: #keyPath(Keyword.title), ascending: true)
+        let timeSort = NSSortDescriptor(key: #keyPath(Keyword.timeStamp), ascending: true)
+        
+        fetchRequest.sortDescriptors = [scoreSort, titleSort, timeSort]
+        fetchRequest.predicate = NSPredicate(format: "title contains[c] %@", title)
+        
+        let keywords: [Keyword]?
+        do {
+            keywords = try managedObjContext.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+        return keywords
+    }
+    
+    // MARK: - UPDATE Services
+    func updateKeywordScoreByMatchingTitle(title: String) -> Keyword? {
+        guard let keyword = getKeywordByMatchingTitle(title: title) else {
+            return nil
+        }
+        keyword.score += 1
         managedObjContext.perform {
             self.coreDataStack.saveContext(self.managedObjContext)
         }

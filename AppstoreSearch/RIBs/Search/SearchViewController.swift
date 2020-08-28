@@ -17,24 +17,37 @@ protocol SearchPresentableListener: class {
 final class SearchViewController: UIViewController, SearchPresentable, SearchViewControllable {
     
     // MARK: - Properties
-    
     @IBOutlet weak var searchTableView: UITableView!
     
     var searchController: UISearchController!
-
-    weak var listener: SearchPresentableListener?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupLayout()
     }
+    
+    // MARK: - Actions
+    
+    // MARK: - SearchPresentable
+    weak var listener: SearchPresentableListener?
+    
+    func reloadTableView() {
+        searchTableView.reloadData()
+    }
+    
+    func beginUpdateTableView() {
+        searchTableView.beginUpdates()
+    }
+    
+    func endUpdateTableView() {
+        searchTableView.endUpdates()
+    }
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - UITableViewDataSource
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: searchTableViewHeaderId) as! SearchTableViewHeader
         view.titleLabel.text = "최근 검색어"
@@ -60,13 +73,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     // MARK: - UISearchResultsUpdating
-    
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text!)
+        let txt = searchController.searchBar.text!
+        listener?.searchKeyword(keyword: txt)
     }
     
     // MARK: - UISearchBarDelegate
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
     }

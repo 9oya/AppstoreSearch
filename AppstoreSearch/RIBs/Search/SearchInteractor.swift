@@ -16,6 +16,12 @@ protocol SearchRouting: ViewableRouting {
 protocol SearchPresentable: Presentable {
     var listener: SearchPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
+    
+    func reloadTableView()
+    
+    func beginUpdateTableView()
+    
+    func endUpdateTableView()
 }
 
 protocol SearchListener: class {
