@@ -33,11 +33,6 @@ final class UpdateBuilder: Builder<UpdateDependency>, UpdateBuildable {
     func build(withListener listener: UpdateListener) -> UpdateRouting {
         let _ = UpdateComponent(dependency: dependency)
         let viewController = UpdateViewController(nibName: "UpdateViewController", bundle: Bundle.main)
-        viewController.title = "업데이트"
-        viewController.tabBarItem.image = {
-            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
-            return UIImage(systemName: "square.and.arrow.down.fill", withConfiguration: config)
-        }()
         
         let interactor = UpdateInteractor(presenter: viewController)
         interactor.listener = listener

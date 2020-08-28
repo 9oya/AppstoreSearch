@@ -14,6 +14,27 @@
 		F563FB4024F88B520043E0E5 /* UpdateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB3B24F88B520043E0E5 /* UpdateInteractor.swift */; };
 		F563FB4124F88B520043E0E5 /* UpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB3C24F88B520043E0E5 /* UpdateViewController.xib */; };
 		F563FB4324F88CBA0043E0E5 /* RootComponent+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4224F88CBA0043E0E5 /* RootComponent+Update.swift */; };
+		F563FB4924F897200043E0E5 /* AppsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4424F897200043E0E5 /* AppsRouter.swift */; };
+		F563FB4A24F897200043E0E5 /* AppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4524F897200043E0E5 /* AppsViewController.swift */; };
+		F563FB4B24F897200043E0E5 /* AppsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4624F897200043E0E5 /* AppsBuilder.swift */; };
+		F563FB4C24F897200043E0E5 /* AppsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4724F897200043E0E5 /* AppsInteractor.swift */; };
+		F563FB4D24F897200043E0E5 /* AppsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB4824F897200043E0E5 /* AppsViewController.xib */; };
+		F563FB5324F8972E0043E0E5 /* GameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4E24F8972E0043E0E5 /* GameRouter.swift */; };
+		F563FB5424F8972E0043E0E5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4F24F8972E0043E0E5 /* GameViewController.swift */; };
+		F563FB5524F8972E0043E0E5 /* GameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB5024F8972E0043E0E5 /* GameBuilder.swift */; };
+		F563FB5624F8972E0043E0E5 /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB5124F8972E0043E0E5 /* GameInteractor.swift */; };
+		F563FB5724F8972E0043E0E5 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB5224F8972E0043E0E5 /* GameViewController.xib */; };
+		F563FB5D24F8973D0043E0E5 /* TodayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB5824F8973D0043E0E5 /* TodayRouter.swift */; };
+		F563FB5E24F8973D0043E0E5 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB5924F8973D0043E0E5 /* TodayViewController.swift */; };
+		F563FB5F24F8973D0043E0E5 /* TodayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB5A24F8973D0043E0E5 /* TodayBuilder.swift */; };
+		F563FB6024F8973D0043E0E5 /* TodayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB5B24F8973D0043E0E5 /* TodayInteractor.swift */; };
+		F563FB6124F8973D0043E0E5 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB5C24F8973D0043E0E5 /* TodayViewController.xib */; };
+		F563FB6324F897A40043E0E5 /* RootComponent+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB6224F897A40043E0E5 /* RootComponent+Today.swift */; };
+		F563FB6524F897B20043E0E5 /* RootComponent+Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB6424F897B20043E0E5 /* RootComponent+Game.swift */; };
+		F563FB6724F897C20043E0E5 /* RootComponent+Apps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB6624F897C20043E0E5 /* RootComponent+Apps.swift */; };
+		F563FB6F24F8ACD00043E0E5 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB6D24F8ACD00043E0E5 /* SearchTableViewCell.swift */; };
+		F563FB7024F8ACD00043E0E5 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB6E24F8ACD00043E0E5 /* SearchTableViewCell.xib */; };
+		F563FB7624F8B54D0043E0E5 /* SearchTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7524F8B54D0043E0E5 /* SearchTableViewHeader.swift */; };
 		F58168E924F743C000762F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168E824F743C000762F9E /* AppDelegate.swift */; };
 		F58168EB24F743C000762F9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168EA24F743C000762F9E /* SceneDelegate.swift */; };
 		F58168F224F743C200762F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F58168F124F743C200762F9E /* Assets.xcassets */; };
@@ -47,6 +68,27 @@
 		F563FB3B24F88B520043E0E5 /* UpdateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInteractor.swift; sourceTree = "<group>"; };
 		F563FB3C24F88B520043E0E5 /* UpdateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateViewController.xib; sourceTree = "<group>"; };
 		F563FB4224F88CBA0043E0E5 /* RootComponent+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Update.swift"; sourceTree = "<group>"; };
+		F563FB4424F897200043E0E5 /* AppsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsRouter.swift; sourceTree = "<group>"; };
+		F563FB4524F897200043E0E5 /* AppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsViewController.swift; sourceTree = "<group>"; };
+		F563FB4624F897200043E0E5 /* AppsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsBuilder.swift; sourceTree = "<group>"; };
+		F563FB4724F897200043E0E5 /* AppsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsInteractor.swift; sourceTree = "<group>"; };
+		F563FB4824F897200043E0E5 /* AppsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsViewController.xib; sourceTree = "<group>"; };
+		F563FB4E24F8972E0043E0E5 /* GameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRouter.swift; sourceTree = "<group>"; };
+		F563FB4F24F8972E0043E0E5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		F563FB5024F8972E0043E0E5 /* GameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBuilder.swift; sourceTree = "<group>"; };
+		F563FB5124F8972E0043E0E5 /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
+		F563FB5224F8972E0043E0E5 /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		F563FB5824F8973D0043E0E5 /* TodayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRouter.swift; sourceTree = "<group>"; };
+		F563FB5924F8973D0043E0E5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		F563FB5A24F8973D0043E0E5 /* TodayBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayBuilder.swift; sourceTree = "<group>"; };
+		F563FB5B24F8973D0043E0E5 /* TodayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayInteractor.swift; sourceTree = "<group>"; };
+		F563FB5C24F8973D0043E0E5 /* TodayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayViewController.xib; sourceTree = "<group>"; };
+		F563FB6224F897A40043E0E5 /* RootComponent+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Today.swift"; sourceTree = "<group>"; };
+		F563FB6424F897B20043E0E5 /* RootComponent+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Game.swift"; sourceTree = "<group>"; };
+		F563FB6624F897C20043E0E5 /* RootComponent+Apps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Apps.swift"; sourceTree = "<group>"; };
+		F563FB6D24F8ACD00043E0E5 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		F563FB6E24F8ACD00043E0E5 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		F563FB7524F8B54D0043E0E5 /* SearchTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewHeader.swift; sourceTree = "<group>"; };
 		F58168E524F743C000762F9E /* AppstoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58168E824F743C000762F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F58168EA24F743C000762F9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +149,11 @@
 		F563FB3524F88B240043E0E5 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				F563FB4624F897200043E0E5 /* AppsBuilder.swift */,
+				F563FB4724F897200043E0E5 /* AppsInteractor.swift */,
+				F563FB4424F897200043E0E5 /* AppsRouter.swift */,
+				F563FB4524F897200043E0E5 /* AppsViewController.swift */,
+				F563FB4824F897200043E0E5 /* AppsViewController.xib */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -114,6 +161,11 @@
 		F563FB3624F88B300043E0E5 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				F563FB5024F8972E0043E0E5 /* GameBuilder.swift */,
+				F563FB5124F8972E0043E0E5 /* GameInteractor.swift */,
+				F563FB4E24F8972E0043E0E5 /* GameRouter.swift */,
+				F563FB4F24F8972E0043E0E5 /* GameViewController.swift */,
+				F563FB5224F8972E0043E0E5 /* GameViewController.xib */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -121,8 +173,23 @@
 		F563FB3724F88B390043E0E5 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				F563FB5A24F8973D0043E0E5 /* TodayBuilder.swift */,
+				F563FB5B24F8973D0043E0E5 /* TodayInteractor.swift */,
+				F563FB5824F8973D0043E0E5 /* TodayRouter.swift */,
+				F563FB5924F8973D0043E0E5 /* TodayViewController.swift */,
+				F563FB5C24F8973D0043E0E5 /* TodayViewController.xib */,
 			);
 			path = Today;
+			sourceTree = "<group>";
+		};
+		F563FB6824F89F2F0043E0E5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB6D24F8ACD00043E0E5 /* SearchTableViewCell.swift */,
+				F563FB6E24F8ACD00043E0E5 /* SearchTableViewCell.xib */,
+				F563FB7524F8B54D0043E0E5 /* SearchTableViewHeader.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F58168DC24F743C000762F9E = {
@@ -146,8 +213,7 @@
 		F58168E724F743C000762F9E /* AppstoreSearch */ = {
 			isa = PBXGroup;
 			children = (
-				F581691824F7458F00762F9E /* Utilities */,
-				F581691724F7458800762F9E /* Extentions */,
+				F563FB6824F89F2F0043E0E5 /* Cells */,
 				F581690024F7442900762F9E /* Resources */,
 				F58168FF24F7441300762F9E /* AppStart */,
 				F58168FC24F7440400762F9E /* RIBs */,
@@ -163,8 +229,8 @@
 				F563FB3624F88B300043E0E5 /* Game */,
 				F563FB3524F88B240043E0E5 /* Apps */,
 				F563FB3424F88B190043E0E5 /* Update */,
-				F5AB98CB24F77E7200311F48 /* SearchDetail */,
 				F58168FE24F7440C00762F9E /* Search */,
+				F5AB98CB24F77E7200311F48 /* SearchDetail */,
 				F58168FD24F7440900762F9E /* Root */,
 			);
 			path = RIBs;
@@ -174,7 +240,10 @@
 			isa = PBXGroup;
 			children = (
 				F5AB98BB24F7643200311F48 /* RootBuilder.swift */,
+				F563FB6624F897C20043E0E5 /* RootComponent+Apps.swift */,
+				F563FB6424F897B20043E0E5 /* RootComponent+Game.swift */,
 				F5AB98D624F78C8D00311F48 /* RootComponent+Search.swift */,
+				F563FB6224F897A40043E0E5 /* RootComponent+Today.swift */,
 				F563FB4224F88CBA0043E0E5 /* RootComponent+Update.swift */,
 				F5AB98BC24F7643200311F48 /* RootInteractor.swift */,
 				F5AB98B924F7643200311F48 /* RootRouter.swift */,
@@ -213,20 +282,6 @@
 				F58168F324F743C200762F9E /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		F581691724F7458800762F9E /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extentions;
-			sourceTree = "<group>";
-		};
-		F581691824F7458F00762F9E /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		F5AB98CB24F77E7200311F48 /* SearchDetail */ = {
@@ -310,10 +365,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F563FB6124F8973D0043E0E5 /* TodayViewController.xib in Resources */,
 				F58168F524F743C200762F9E /* LaunchScreen.storyboard in Resources */,
+				F563FB7024F8ACD00043E0E5 /* SearchTableViewCell.xib in Resources */,
 				F563FB4124F88B520043E0E5 /* UpdateViewController.xib in Resources */,
 				F58168F224F743C200762F9E /* Assets.xcassets in Resources */,
 				F5AB98CA24F7645500311F48 /* SearchViewController.xib in Resources */,
+				F563FB5724F8972E0043E0E5 /* GameViewController.xib in Resources */,
+				F563FB4D24F897200043E0E5 /* AppsViewController.xib in Resources */,
 				F5AB98D524F77EE900311F48 /* SearchDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,27 +426,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F563FB5424F8972E0043E0E5 /* GameViewController.swift in Sources */,
+				F563FB6724F897C20043E0E5 /* RootComponent+Apps.swift in Sources */,
 				F5AB98C724F7645500311F48 /* SearchViewController.swift in Sources */,
 				F5AB98D124F77EE900311F48 /* SearchDetailRouter.swift in Sources */,
 				F5AB98BF24F7643200311F48 /* RootBuilder.swift in Sources */,
+				F563FB4B24F897200043E0E5 /* AppsBuilder.swift in Sources */,
+				F563FB5324F8972E0043E0E5 /* GameRouter.swift in Sources */,
+				F563FB5624F8972E0043E0E5 /* GameInteractor.swift in Sources */,
 				F5AB98D924F78CF000311F48 /* SearchComponent+SearchDetail.swift in Sources */,
+				F563FB6024F8973D0043E0E5 /* TodayInteractor.swift in Sources */,
 				F563FB3F24F88B520043E0E5 /* UpdateBuilder.swift in Sources */,
+				F563FB5D24F8973D0043E0E5 /* TodayRouter.swift in Sources */,
 				F5AB98BD24F7643200311F48 /* RootRouter.swift in Sources */,
 				F563FB3D24F88B520043E0E5 /* UpdateRouter.swift in Sources */,
 				F5AB98C624F7645500311F48 /* SearchRouter.swift in Sources */,
 				F5AB98C824F7645500311F48 /* SearchBuilder.swift in Sources */,
+				F563FB6524F897B20043E0E5 /* RootComponent+Game.swift in Sources */,
+				F563FB7624F8B54D0043E0E5 /* SearchTableViewHeader.swift in Sources */,
 				F5AB98C924F7645500311F48 /* SearchInteractor.swift in Sources */,
 				F563FB4024F88B520043E0E5 /* UpdateInteractor.swift in Sources */,
+				F563FB4C24F897200043E0E5 /* AppsInteractor.swift in Sources */,
 				F5AB98BE24F7643200311F48 /* RootTabBarController.swift in Sources */,
 				F563FB3E24F88B520043E0E5 /* UpdateViewController.swift in Sources */,
+				F563FB6324F897A40043E0E5 /* RootComponent+Today.swift in Sources */,
+				F563FB5F24F8973D0043E0E5 /* TodayBuilder.swift in Sources */,
 				F581691624F7445F00762F9E /* AppComponent.swift in Sources */,
+				F563FB5E24F8973D0043E0E5 /* TodayViewController.swift in Sources */,
+				F563FB4A24F897200043E0E5 /* AppsViewController.swift in Sources */,
 				F58168E924F743C000762F9E /* AppDelegate.swift in Sources */,
 				F5AB98C024F7643200311F48 /* RootInteractor.swift in Sources */,
+				F563FB6F24F8ACD00043E0E5 /* SearchTableViewCell.swift in Sources */,
 				F563FB4324F88CBA0043E0E5 /* RootComponent+Update.swift in Sources */,
 				F5AB98D424F77EE900311F48 /* SearchDetailInteractor.swift in Sources */,
+				F563FB4924F897200043E0E5 /* AppsRouter.swift in Sources */,
 				F5AB98D224F77EE900311F48 /* SearchDetailViewController.swift in Sources */,
 				F5AB98D724F78C8D00311F48 /* RootComponent+Search.swift in Sources */,
 				F5AB98D324F77EE900311F48 /* SearchDetailBuilder.swift in Sources */,
+				F563FB5524F8972E0043E0E5 /* GameBuilder.swift in Sources */,
 				F58168EB24F743C000762F9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

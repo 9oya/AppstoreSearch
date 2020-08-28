@@ -8,7 +8,7 @@
 
 import RIBs
 
-protocol RootInteractable: Interactable, UpdateListener, SearchListener {
+protocol RootInteractable: Interactable, TodayListener, GameListener, AppsListener, UpdateListener, SearchListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
 }
@@ -23,9 +23,15 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
 
     init(interactor: RootInteractable,
          viewController: RootViewControllable,
-         searchBuilder: SearchBuildable,
-         updateBuilder: UpdateBuildable) {
+         todayBuilder: TodayBuildable,
+         gameBuilder: GameBuildable,
+         appsBuilder: AppsBuildable,
+         updateBuilder: UpdateBuildable,
+         searchBuilder: SearchBuildable) {
         
+        self.todayBuilder = todayBuilder
+        self.gameBuilder = gameBuilder
+        self.appsBuilder = appsBuilder
         self.updateBuilder = updateBuilder
         self.searchBuilder = searchBuilder
         
@@ -42,20 +48,60 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     // MARK: - Private
     
+    private let todayBuilder: TodayBuildable
+    private let gameBuilder: GameBuildable
+    private let appsBuilder: AppsBuildable
     private let updateBuilder: UpdateBuildable
     private let searchBuilder: SearchBuildable
     
+    private var today: ViewableRouting?
+    private var game: ViewableRouting?
+    private var apps: ViewableRouting?
     private var update: ViewableRouting?
     private var search: ViewableRouting?
     
     private func setupViewControllers() {
-        let search = searchBuilder.build(withListener: interactor)
-        self.search = search
+        let today = todayBuilder.build(withListener: interactor)
+        today.viewControllable.uiviewController.title = "투데이"
+        today.viewControllable.uiviewController.tabBarItem.image = {
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+            return UIImage(systemName: "calendar", withConfiguration: config)
+        }()
+        self.today = today
+        
+        let game = gameBuilder.build(withListener: interactor)
+        game.viewControllable.uiviewController.title = "게임"
+        game.viewControllable.uiviewController.tabBarItem.image = {
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+            return UIImage(systemName: "gamecontroller.fill", withConfiguration: config)
+        }()
+        self.game = game
+        
+        let apps = appsBuilder.build(withListener: interactor)
+        apps.viewControllable.uiviewController.title = "앱"
+        apps.viewControllable.uiviewController.tabBarItem.image = {
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+            return UIImage(systemName: "square.stack.3d.up.fill", withConfiguration: config)
+        }()
+        self.apps = apps
         
         let update = updateBuilder.build(withListener: interactor)
+        update.viewControllable.uiviewController.title = "업데이트"
+        update.viewControllable.uiviewController.tabBarItem.image = {
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+            return UIImage(systemName: "square.and.arrow.down.fill", withConfiguration: config)
+        }()
         self.update = update
         
-        viewController.setupViewControllers(viewControllers: [update.viewControllable, search.viewControllable])
+        let search = searchBuilder.build(withListener: interactor)
+        search.viewControllable.uiviewController.title = "검색"
+        search.viewControllable.uiviewController.tabBarItem.image = {
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+            return UIImage(systemName: "magnifyingglass", withConfiguration: config)
+        }()
+        self.search = search
+        
+        viewController.setupViewControllers(viewControllers: [today.viewControllable, game.viewControllable, apps.viewControllable, update.viewControllable, search.viewControllable])
     }
     
     private func routeToSearch() {

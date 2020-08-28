@@ -42,14 +42,19 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         let component = RootComponent(dependency: dependency, rootViewController: viewController)
         let interactor = RootInteractor(presenter: viewController)
         
+        let todayBuilder = TodayBuilder(dependency: component)
+        let gameBuilder = GameBuilder(dependency: component)
+        let appsBuilder = AppsBuilder(dependency: component)
         let updateBuilder = UpdateBuilder(dependency: component)
         let searchBuilder = SearchBuilder(dependency: component)
         
         let router = RootRouter(interactor: interactor,
                                 viewController: viewController,
-                                searchBuilder: searchBuilder,
-                                updateBuilder: updateBuilder)
-        
+                                todayBuilder: todayBuilder,
+                                gameBuilder: gameBuilder,
+                                appsBuilder: appsBuilder,
+                                updateBuilder: updateBuilder,
+                                searchBuilder: searchBuilder)
         return router
     }
 }
