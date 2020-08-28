@@ -35,6 +35,15 @@
 		F563FB6F24F8ACD00043E0E5 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB6D24F8ACD00043E0E5 /* SearchTableViewCell.swift */; };
 		F563FB7024F8ACD00043E0E5 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB6E24F8ACD00043E0E5 /* SearchTableViewCell.xib */; };
 		F563FB7624F8B54D0043E0E5 /* SearchTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7524F8B54D0043E0E5 /* SearchTableViewHeader.swift */; };
+		F563FB7924F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7724F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodeld */; };
+		F563FB7D24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7B24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift */; };
+		F563FB7E24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7C24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift */; };
+		F563FB8224F8C1230043E0E5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB8124F8C1230043E0E5 /* CoreDataStack.swift */; };
+		F563FB8A24F8C29B0043E0E5 /* AppstoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */; };
+		F563FB9724F8C2F40043E0E5 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9624F8C2F40043E0E5 /* TestCoreDataStack.swift */; };
+		F563FB9924F8C3490043E0E5 /* KeywordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9824F8C3490043E0E5 /* KeywordService.swift */; };
+		F563FB9B24F8C3690043E0E5 /* KeywordServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */; };
+		F563FB9D24F8C4980043E0E5 /* KeywordServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9C24F8C4980043E0E5 /* KeywordServiceProtocol.swift */; };
 		F58168E924F743C000762F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168E824F743C000762F9E /* AppDelegate.swift */; };
 		F58168EB24F743C000762F9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168EA24F743C000762F9E /* SceneDelegate.swift */; };
 		F58168F224F743C200762F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F58168F124F743C200762F9E /* Assets.xcassets */; };
@@ -57,6 +66,16 @@
 		F5AB98D724F78C8D00311F48 /* RootComponent+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98D624F78C8D00311F48 /* RootComponent+Search.swift */; };
 		F5AB98D924F78CF000311F48 /* SearchComponent+SearchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98D824F78CF000311F48 /* SearchComponent+SearchDetail.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F563FB8C24F8C29B0043E0E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F58168DD24F743C000762F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F58168E424F743C000762F9E;
+			remoteInfo = AppstoreSearch;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0790F3087726C9B3FCAB9928 /* Pods-AppstoreSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppstoreSearch.release.xcconfig"; path = "Target Support Files/Pods-AppstoreSearch/Pods-AppstoreSearch.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +108,17 @@
 		F563FB6D24F8ACD00043E0E5 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		F563FB6E24F8ACD00043E0E5 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		F563FB7524F8B54D0043E0E5 /* SearchTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewHeader.swift; sourceTree = "<group>"; };
+		F563FB7824F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppstoreSearch.xcdatamodel; sourceTree = "<group>"; };
+		F563FB7B24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyword+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F563FB7C24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyword+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F563FB8124F8C1230043E0E5 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F563FB8724F8C29B0043E0E5 /* AppstoreSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstoreSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreSearchTests.swift; sourceTree = "<group>"; };
+		F563FB8B24F8C29B0043E0E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F563FB9624F8C2F40043E0E5 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		F563FB9824F8C3490043E0E5 /* KeywordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordService.swift; sourceTree = "<group>"; };
+		F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordServiceTests.swift; sourceTree = "<group>"; };
+		F563FB9C24F8C4980043E0E5 /* KeywordServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordServiceProtocol.swift; sourceTree = "<group>"; };
 		F58168E524F743C000762F9E /* AppstoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58168E824F743C000762F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F58168EA24F743C000762F9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +145,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F563FB8424F8C29B0043E0E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F58168E224F743C000762F9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,10 +229,56 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F563FB7A24F8BFAD0043E0E5 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB7C24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift */,
+				F563FB7B24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift */,
+			);
+			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		F563FB7F24F8C06E0043E0E5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB8124F8C1230043E0E5 /* CoreDataStack.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F563FB8024F8C09C0043E0E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB9824F8C3490043E0E5 /* KeywordService.swift */,
+				F563FB9C24F8C4980043E0E5 /* KeywordServiceProtocol.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F563FB8824F8C29B0043E0E5 /* AppstoreSearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB9124F8C2AF0043E0E5 /* Services */,
+				F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */,
+				F563FB8B24F8C29B0043E0E5 /* Info.plist */,
+			);
+			path = AppstoreSearchTests;
+			sourceTree = "<group>";
+		};
+		F563FB9124F8C2AF0043E0E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB9624F8C2F40043E0E5 /* TestCoreDataStack.swift */,
+				F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F58168DC24F743C000762F9E = {
 			isa = PBXGroup;
 			children = (
 				F58168E724F743C000762F9E /* AppstoreSearch */,
+				F563FB8824F8C29B0043E0E5 /* AppstoreSearchTests */,
 				F58168E624F743C000762F9E /* Products */,
 				FCCC82CEE6F17DAFEFE6F945 /* Pods */,
 				3522A4A2E16E3C16B2D9370F /* Frameworks */,
@@ -206,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				F58168E524F743C000762F9E /* AppstoreSearch.app */,
+				F563FB8724F8C29B0043E0E5 /* AppstoreSearchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,6 +297,9 @@
 		F58168E724F743C000762F9E /* AppstoreSearch */ = {
 			isa = PBXGroup;
 			children = (
+				F563FB8024F8C09C0043E0E5 /* Services */,
+				F563FB7F24F8C06E0043E0E5 /* Utilities */,
+				F563FB7A24F8BFAD0043E0E5 /* ManagedObjects */,
 				F563FB6824F89F2F0043E0E5 /* Cells */,
 				F581690024F7442900762F9E /* Resources */,
 				F58168FF24F7441300762F9E /* AppStart */,
@@ -280,6 +367,7 @@
 			children = (
 				F58168F124F743C200762F9E /* Assets.xcassets */,
 				F58168F324F743C200762F9E /* LaunchScreen.storyboard */,
+				F563FB7724F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -308,6 +396,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F563FB8624F8C29B0043E0E5 /* AppstoreSearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F563FB8E24F8C29B0043E0E5 /* Build configuration list for PBXNativeTarget "AppstoreSearchTests" */;
+			buildPhases = (
+				F563FB8324F8C29B0043E0E5 /* Sources */,
+				F563FB8424F8C29B0043E0E5 /* Frameworks */,
+				F563FB8524F8C29B0043E0E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F563FB8D24F8C29B0043E0E5 /* PBXTargetDependency */,
+			);
+			name = AppstoreSearchTests;
+			productName = AppstoreSearchTests;
+			productReference = F563FB8724F8C29B0043E0E5 /* AppstoreSearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F58168E424F743C000762F9E /* AppstoreSearch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F58168F924F743C200762F9E /* Build configuration list for PBXNativeTarget "AppstoreSearch" */;
@@ -337,6 +443,10 @@
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = Dymm;
 				TargetAttributes = {
+					F563FB8624F8C29B0043E0E5 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = F58168E424F743C000762F9E;
+					};
 					F58168E424F743C000762F9E = {
 						CreatedOnToolsVersion = 11.6;
 					};
@@ -356,11 +466,19 @@
 			projectRoot = "";
 			targets = (
 				F58168E424F743C000762F9E /* AppstoreSearch */,
+				F563FB8624F8C29B0043E0E5 /* AppstoreSearchTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F563FB8524F8C29B0043E0E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F58168E324F743C000762F9E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,6 +540,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F563FB8324F8C29B0043E0E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F563FB8A24F8C29B0043E0E5 /* AppstoreSearchTests.swift in Sources */,
+				F563FB9724F8C2F40043E0E5 /* TestCoreDataStack.swift in Sources */,
+				F563FB9B24F8C3690043E0E5 /* KeywordServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F58168E124F743C000762F9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,8 +559,11 @@
 				F5AB98C724F7645500311F48 /* SearchViewController.swift in Sources */,
 				F5AB98D124F77EE900311F48 /* SearchDetailRouter.swift in Sources */,
 				F5AB98BF24F7643200311F48 /* RootBuilder.swift in Sources */,
+				F563FB9D24F8C4980043E0E5 /* KeywordServiceProtocol.swift in Sources */,
+				F563FB9924F8C3490043E0E5 /* KeywordService.swift in Sources */,
 				F563FB4B24F897200043E0E5 /* AppsBuilder.swift in Sources */,
 				F563FB5324F8972E0043E0E5 /* GameRouter.swift in Sources */,
+				F563FB7924F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodeld in Sources */,
 				F563FB5624F8972E0043E0E5 /* GameInteractor.swift in Sources */,
 				F5AB98D924F78CF000311F48 /* SearchComponent+SearchDetail.swift in Sources */,
 				F563FB6024F8973D0043E0E5 /* TodayInteractor.swift in Sources */,
@@ -445,6 +576,7 @@
 				F563FB6524F897B20043E0E5 /* RootComponent+Game.swift in Sources */,
 				F563FB7624F8B54D0043E0E5 /* SearchTableViewHeader.swift in Sources */,
 				F5AB98C924F7645500311F48 /* SearchInteractor.swift in Sources */,
+				F563FB7D24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift in Sources */,
 				F563FB4024F88B520043E0E5 /* UpdateInteractor.swift in Sources */,
 				F563FB4C24F897200043E0E5 /* AppsInteractor.swift in Sources */,
 				F5AB98BE24F7643200311F48 /* RootTabBarController.swift in Sources */,
@@ -453,6 +585,8 @@
 				F563FB5F24F8973D0043E0E5 /* TodayBuilder.swift in Sources */,
 				F581691624F7445F00762F9E /* AppComponent.swift in Sources */,
 				F563FB5E24F8973D0043E0E5 /* TodayViewController.swift in Sources */,
+				F563FB7E24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift in Sources */,
+				F563FB8224F8C1230043E0E5 /* CoreDataStack.swift in Sources */,
 				F563FB4A24F897200043E0E5 /* AppsViewController.swift in Sources */,
 				F58168E924F743C000762F9E /* AppDelegate.swift in Sources */,
 				F5AB98C024F7643200311F48 /* RootInteractor.swift in Sources */,
@@ -470,6 +604,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F563FB8D24F8C29B0043E0E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F58168E424F743C000762F9E /* AppstoreSearch */;
+			targetProxy = F563FB8C24F8C29B0043E0E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		F58168F324F743C200762F9E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -482,6 +624,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F563FB8F24F8C29B0043E0E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G99VW8TP32;
+				INFOPLIST_FILE = AppstoreSearchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.dymm.AppstoreSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppstoreSearch.app/AppstoreSearch";
+			};
+			name = Debug;
+		};
+		F563FB9024F8C29B0043E0E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G99VW8TP32;
+				INFOPLIST_FILE = AppstoreSearchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.dymm.AppstoreSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppstoreSearch.app/AppstoreSearch";
+			};
+			name = Release;
+		};
 		F58168F724F743C200762F9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -637,6 +819,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F563FB8E24F8C29B0043E0E5 /* Build configuration list for PBXNativeTarget "AppstoreSearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F563FB8F24F8C29B0043E0E5 /* Debug */,
+				F563FB9024F8C29B0043E0E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F58168E024F743C000762F9E /* Build configuration list for PBXProject "AppstoreSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -656,6 +847,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F563FB7724F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F563FB7824F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodel */,
+			);
+			currentVersion = F563FB7824F8BE9A0043E0E5 /* AppstoreSearch.xcdatamodel */;
+			path = AppstoreSearch.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F58168DD24F743C000762F9E /* Project object */;
 }

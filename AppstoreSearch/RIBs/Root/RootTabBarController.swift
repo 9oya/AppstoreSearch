@@ -44,7 +44,7 @@ final class RootTabBarController: UITabBarController, UITabBarControllerDelegate
         }
         self.viewControllers = ncArr
         
-        selectedIndex = 4
+        selectedIndex = ncArr.count - 1
     }
     
     func replaceModal(viewController: ViewControllable?) {
