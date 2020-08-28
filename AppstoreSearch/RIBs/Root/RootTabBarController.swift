@@ -16,7 +16,7 @@ protocol RootPresentableListener: class {
     // interactor class.
 }
 
-final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
+final class RootTabBarController: UITabBarController, UITabBarControllerDelegate, RootPresentable, RootViewControllable {
 
     weak var listener: RootPresentableListener?
     
@@ -30,11 +30,22 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemTeal
+        self.delegate = self
     }
     
     // MARK: - RootViewControllable
+    
+    func setupViewControllers(viewControllers: [ViewControllable]) {
+        var ncArr = [UINavigationController]()
+        for viewController in viewControllers {
+            let vc = viewController.uiviewController
+            let nc = UINavigationController(rootViewController: vc)
+            ncArr.append(nc)
+        }
+        self.viewControllers = ncArr
+        
+        selectedIndex = 1
+    }
     
     func replaceModal(viewController: ViewControllable?) {
         targetViewController = viewController
@@ -75,6 +86,6 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
 
 // MARK: - SearchViewControllable
 
-extension RootViewController: SearchViewControllable {
+extension RootTabBarController: SearchViewControllable {
     
 }

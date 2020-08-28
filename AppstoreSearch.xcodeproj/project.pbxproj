@@ -8,13 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		D92BB2643F9EB1027DB48921 /* Pods_AppstoreSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF7025D441A0C10E7D94A35 /* Pods_AppstoreSearch.framework */; };
+		F563FB3D24F88B520043E0E5 /* UpdateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB3824F88B520043E0E5 /* UpdateRouter.swift */; };
+		F563FB3E24F88B520043E0E5 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB3924F88B520043E0E5 /* UpdateViewController.swift */; };
+		F563FB3F24F88B520043E0E5 /* UpdateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB3A24F88B520043E0E5 /* UpdateBuilder.swift */; };
+		F563FB4024F88B520043E0E5 /* UpdateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB3B24F88B520043E0E5 /* UpdateInteractor.swift */; };
+		F563FB4124F88B520043E0E5 /* UpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F563FB3C24F88B520043E0E5 /* UpdateViewController.xib */; };
+		F563FB4324F88CBA0043E0E5 /* RootComponent+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB4224F88CBA0043E0E5 /* RootComponent+Update.swift */; };
 		F58168E924F743C000762F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168E824F743C000762F9E /* AppDelegate.swift */; };
 		F58168EB24F743C000762F9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168EA24F743C000762F9E /* SceneDelegate.swift */; };
 		F58168F224F743C200762F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F58168F124F743C200762F9E /* Assets.xcassets */; };
 		F58168F524F743C200762F9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58168F324F743C200762F9E /* LaunchScreen.storyboard */; };
 		F581691624F7445F00762F9E /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581691524F7445F00762F9E /* AppComponent.swift */; };
 		F5AB98BD24F7643200311F48 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98B924F7643200311F48 /* RootRouter.swift */; };
-		F5AB98BE24F7643200311F48 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98BA24F7643200311F48 /* RootViewController.swift */; };
+		F5AB98BE24F7643200311F48 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98BA24F7643200311F48 /* RootTabBarController.swift */; };
 		F5AB98BF24F7643200311F48 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98BB24F7643200311F48 /* RootBuilder.swift */; };
 		F5AB98C024F7643200311F48 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98BC24F7643200311F48 /* RootInteractor.swift */; };
 		F5AB98C624F7645500311F48 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98C124F7645500311F48 /* SearchRouter.swift */; };
@@ -35,6 +41,12 @@
 		0790F3087726C9B3FCAB9928 /* Pods-AppstoreSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppstoreSearch.release.xcconfig"; path = "Target Support Files/Pods-AppstoreSearch/Pods-AppstoreSearch.release.xcconfig"; sourceTree = "<group>"; };
 		4EF7025D441A0C10E7D94A35 /* Pods_AppstoreSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppstoreSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC39B894EC05D9EB65E5E17 /* Pods-AppstoreSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppstoreSearch.debug.xcconfig"; path = "Target Support Files/Pods-AppstoreSearch/Pods-AppstoreSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		F563FB3824F88B520043E0E5 /* UpdateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRouter.swift; sourceTree = "<group>"; };
+		F563FB3924F88B520043E0E5 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		F563FB3A24F88B520043E0E5 /* UpdateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBuilder.swift; sourceTree = "<group>"; };
+		F563FB3B24F88B520043E0E5 /* UpdateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInteractor.swift; sourceTree = "<group>"; };
+		F563FB3C24F88B520043E0E5 /* UpdateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateViewController.xib; sourceTree = "<group>"; };
+		F563FB4224F88CBA0043E0E5 /* RootComponent+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Update.swift"; sourceTree = "<group>"; };
 		F58168E524F743C000762F9E /* AppstoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58168E824F743C000762F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F58168EA24F743C000762F9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +55,7 @@
 		F58168F624F743C200762F9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F581691524F7445F00762F9E /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		F5AB98B924F7643200311F48 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
-		F5AB98BA24F7643200311F48 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		F5AB98BA24F7643200311F48 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		F5AB98BB24F7643200311F48 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		F5AB98BC24F7643200311F48 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		F5AB98C124F7645500311F48 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -80,6 +92,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F563FB3424F88B190043E0E5 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB3A24F88B520043E0E5 /* UpdateBuilder.swift */,
+				F563FB3B24F88B520043E0E5 /* UpdateInteractor.swift */,
+				F563FB3824F88B520043E0E5 /* UpdateRouter.swift */,
+				F563FB3924F88B520043E0E5 /* UpdateViewController.swift */,
+				F563FB3C24F88B520043E0E5 /* UpdateViewController.xib */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		F563FB3524F88B240043E0E5 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		F563FB3624F88B300043E0E5 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		F563FB3724F88B390043E0E5 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
 		F58168DC24F743C000762F9E = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +159,10 @@
 		F58168FC24F7440400762F9E /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				F563FB3724F88B390043E0E5 /* Today */,
+				F563FB3624F88B300043E0E5 /* Game */,
+				F563FB3524F88B240043E0E5 /* Apps */,
+				F563FB3424F88B190043E0E5 /* Update */,
 				F5AB98CB24F77E7200311F48 /* SearchDetail */,
 				F58168FE24F7440C00762F9E /* Search */,
 				F58168FD24F7440900762F9E /* Root */,
@@ -126,9 +175,10 @@
 			children = (
 				F5AB98BB24F7643200311F48 /* RootBuilder.swift */,
 				F5AB98D624F78C8D00311F48 /* RootComponent+Search.swift */,
+				F563FB4224F88CBA0043E0E5 /* RootComponent+Update.swift */,
 				F5AB98BC24F7643200311F48 /* RootInteractor.swift */,
 				F5AB98B924F7643200311F48 /* RootRouter.swift */,
-				F5AB98BA24F7643200311F48 /* RootViewController.swift */,
+				F5AB98BA24F7643200311F48 /* RootTabBarController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -261,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58168F524F743C200762F9E /* LaunchScreen.storyboard in Resources */,
+				F563FB4124F88B520043E0E5 /* UpdateViewController.xib in Resources */,
 				F58168F224F743C200762F9E /* Assets.xcassets in Resources */,
 				F5AB98CA24F7645500311F48 /* SearchViewController.xib in Resources */,
 				F5AB98D524F77EE900311F48 /* SearchDetailViewController.xib in Resources */,
@@ -320,14 +371,19 @@
 				F5AB98D124F77EE900311F48 /* SearchDetailRouter.swift in Sources */,
 				F5AB98BF24F7643200311F48 /* RootBuilder.swift in Sources */,
 				F5AB98D924F78CF000311F48 /* SearchComponent+SearchDetail.swift in Sources */,
+				F563FB3F24F88B520043E0E5 /* UpdateBuilder.swift in Sources */,
 				F5AB98BD24F7643200311F48 /* RootRouter.swift in Sources */,
+				F563FB3D24F88B520043E0E5 /* UpdateRouter.swift in Sources */,
 				F5AB98C624F7645500311F48 /* SearchRouter.swift in Sources */,
 				F5AB98C824F7645500311F48 /* SearchBuilder.swift in Sources */,
 				F5AB98C924F7645500311F48 /* SearchInteractor.swift in Sources */,
-				F5AB98BE24F7643200311F48 /* RootViewController.swift in Sources */,
+				F563FB4024F88B520043E0E5 /* UpdateInteractor.swift in Sources */,
+				F5AB98BE24F7643200311F48 /* RootTabBarController.swift in Sources */,
+				F563FB3E24F88B520043E0E5 /* UpdateViewController.swift in Sources */,
 				F581691624F7445F00762F9E /* AppComponent.swift in Sources */,
 				F58168E924F743C000762F9E /* AppDelegate.swift in Sources */,
 				F5AB98C024F7643200311F48 /* RootInteractor.swift in Sources */,
+				F563FB4324F88CBA0043E0E5 /* RootComponent+Update.swift in Sources */,
 				F5AB98D424F77EE900311F48 /* SearchDetailInteractor.swift in Sources */,
 				F5AB98D224F77EE900311F48 /* SearchDetailViewController.swift in Sources */,
 				F5AB98D724F78C8D00311F48 /* RootComponent+Search.swift in Sources */,

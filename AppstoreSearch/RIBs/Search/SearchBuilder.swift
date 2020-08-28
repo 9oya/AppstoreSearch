@@ -34,6 +34,12 @@ final class SearchBuilder: Builder<SearchDependency>, SearchBuildable {
     func build(withListener listener: SearchListener) -> SearchRouting {
         let component = SearchComponent(dependency: dependency)
         let viewController = SearchViewController(nibName: "SearchViewController", bundle: Bundle.main)
+        viewController.title = "검색"
+        viewController.tabBarItem.image = {
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .medium, scale: .large)
+            return UIImage(systemName: "magnifyingglass", withConfiguration: config)
+        }()
+        
         let interactor = SearchInteractor(presenter: viewController)
         interactor.listener = listener
         

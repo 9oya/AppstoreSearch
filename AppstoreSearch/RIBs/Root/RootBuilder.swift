@@ -16,10 +16,10 @@ protocol RootDependency: Dependency {
 
 final class RootComponent: Component<RootDependency> {
     
-    let rootViewController: RootViewController
+    let rootViewController: RootTabBarController
 
     init(dependency: RootDependency,
-         rootViewController: RootViewController) {
+         rootViewController: RootTabBarController) {
         self.rootViewController = rootViewController
         super.init(dependency: dependency)
     }
@@ -38,15 +38,17 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
     }
 
     func build() -> LaunchRouting {
-        let viewController = RootViewController()
+        let viewController = RootTabBarController()
         let component = RootComponent(dependency: dependency, rootViewController: viewController)
         let interactor = RootInteractor(presenter: viewController)
         
+        let updateBuilder = UpdateBuilder(dependency: component)
         let searchBuilder = SearchBuilder(dependency: component)
         
         let router = RootRouter(interactor: interactor,
                                 viewController: viewController,
-                                searchBuilder: searchBuilder)
+                                searchBuilder: searchBuilder,
+                                updateBuilder: updateBuilder)
         
         return router
     }
