@@ -44,6 +44,10 @@
 		F563FB9924F8C3490043E0E5 /* KeywordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9824F8C3490043E0E5 /* KeywordService.swift */; };
 		F563FB9B24F8C3690043E0E5 /* KeywordServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */; };
 		F563FB9D24F8C4980043E0E5 /* KeywordServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9C24F8C4980043E0E5 /* KeywordServiceProtocol.swift */; };
+		F563FBA024F90AE20043E0E5 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9F24F90AE20043E0E5 /* SearchService.swift */; };
+		F563FBA224F90AF20043E0E5 /* SearchServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FBA124F90AF20043E0E5 /* SearchServiceProtocol.swift */; };
+		F563FBA524F9DF790043E0E5 /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FBA424F9DF790043E0E5 /* SearchServiceTests.swift */; };
+		F563FBA824F9F0AA0043E0E5 /* ItunseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FBA724F9F0AA0043E0E5 /* ItunseModels.swift */; };
 		F58168E924F743C000762F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168E824F743C000762F9E /* AppDelegate.swift */; };
 		F58168EB24F743C000762F9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58168EA24F743C000762F9E /* SceneDelegate.swift */; };
 		F58168F224F743C200762F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F58168F124F743C200762F9E /* Assets.xcassets */; };
@@ -119,6 +123,10 @@
 		F563FB9824F8C3490043E0E5 /* KeywordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordService.swift; sourceTree = "<group>"; };
 		F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordServiceTests.swift; sourceTree = "<group>"; };
 		F563FB9C24F8C4980043E0E5 /* KeywordServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordServiceProtocol.swift; sourceTree = "<group>"; };
+		F563FB9F24F90AE20043E0E5 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		F563FBA124F90AF20043E0E5 /* SearchServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceProtocol.swift; sourceTree = "<group>"; };
+		F563FBA424F9DF790043E0E5 /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
+		F563FBA724F9F0AA0043E0E5 /* ItunseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunseModels.swift; sourceTree = "<group>"; };
 		F58168E524F743C000762F9E /* AppstoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58168E824F743C000762F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F58168EA24F743C000762F9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,32 +254,58 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		F563FB8024F8C09C0043E0E5 /* Services */ = {
+		F563FB8024F8C09C0043E0E5 /* LocalServices */ = {
 			isa = PBXGroup;
 			children = (
 				F563FB9824F8C3490043E0E5 /* KeywordService.swift */,
 				F563FB9C24F8C4980043E0E5 /* KeywordServiceProtocol.swift */,
 			);
-			path = Services;
+			path = LocalServices;
 			sourceTree = "<group>";
 		};
 		F563FB8824F8C29B0043E0E5 /* AppstoreSearchTests */ = {
 			isa = PBXGroup;
 			children = (
-				F563FB9124F8C2AF0043E0E5 /* Services */,
+				F563FBA324F9DF5F0043E0E5 /* NetworkServices */,
+				F563FB9124F8C2AF0043E0E5 /* LocalServices */,
 				F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */,
 				F563FB8B24F8C29B0043E0E5 /* Info.plist */,
 			);
 			path = AppstoreSearchTests;
 			sourceTree = "<group>";
 		};
-		F563FB9124F8C2AF0043E0E5 /* Services */ = {
+		F563FB9124F8C2AF0043E0E5 /* LocalServices */ = {
 			isa = PBXGroup;
 			children = (
 				F563FB9624F8C2F40043E0E5 /* TestCoreDataStack.swift */,
 				F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */,
 			);
-			path = Services;
+			path = LocalServices;
+			sourceTree = "<group>";
+		};
+		F563FB9E24F90AC60043E0E5 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				F563FB9F24F90AE20043E0E5 /* SearchService.swift */,
+				F563FBA124F90AF20043E0E5 /* SearchServiceProtocol.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		F563FBA324F9DF5F0043E0E5 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				F563FBA424F9DF790043E0E5 /* SearchServiceTests.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		F563FBA624F9DFB30043E0E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F563FBA724F9F0AA0043E0E5 /* ItunseModels.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F58168DC24F743C000762F9E = {
@@ -297,8 +331,10 @@
 		F58168E724F743C000762F9E /* AppstoreSearch */ = {
 			isa = PBXGroup;
 			children = (
-				F563FB8024F8C09C0043E0E5 /* Services */,
+				F563FB9E24F90AC60043E0E5 /* NetworkServices */,
+				F563FB8024F8C09C0043E0E5 /* LocalServices */,
 				F563FB7F24F8C06E0043E0E5 /* Utilities */,
+				F563FBA624F9DFB30043E0E5 /* Models */,
 				F563FB7A24F8BFAD0043E0E5 /* ManagedObjects */,
 				F563FB6824F89F2F0043E0E5 /* Cells */,
 				F581690024F7442900762F9E /* Resources */,
@@ -545,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F563FB8A24F8C29B0043E0E5 /* AppstoreSearchTests.swift in Sources */,
+				F563FBA524F9DF790043E0E5 /* SearchServiceTests.swift in Sources */,
 				F563FB9724F8C2F40043E0E5 /* TestCoreDataStack.swift in Sources */,
 				F563FB9B24F8C3690043E0E5 /* KeywordServiceTests.swift in Sources */,
 			);
@@ -575,14 +612,17 @@
 				F5AB98C824F7645500311F48 /* SearchBuilder.swift in Sources */,
 				F563FB6524F897B20043E0E5 /* RootComponent+Game.swift in Sources */,
 				F563FB7624F8B54D0043E0E5 /* SearchTableViewHeader.swift in Sources */,
+				F563FBA024F90AE20043E0E5 /* SearchService.swift in Sources */,
 				F5AB98C924F7645500311F48 /* SearchInteractor.swift in Sources */,
 				F563FB7D24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift in Sources */,
 				F563FB4024F88B520043E0E5 /* UpdateInteractor.swift in Sources */,
+				F563FBA824F9F0AA0043E0E5 /* ItunseModels.swift in Sources */,
 				F563FB4C24F897200043E0E5 /* AppsInteractor.swift in Sources */,
 				F5AB98BE24F7643200311F48 /* RootTabBarController.swift in Sources */,
 				F563FB3E24F88B520043E0E5 /* UpdateViewController.swift in Sources */,
 				F563FB6324F897A40043E0E5 /* RootComponent+Today.swift in Sources */,
 				F563FB5F24F8973D0043E0E5 /* TodayBuilder.swift in Sources */,
+				F563FBA224F90AF20043E0E5 /* SearchServiceProtocol.swift in Sources */,
 				F581691624F7445F00762F9E /* AppComponent.swift in Sources */,
 				F563FB5E24F8973D0043E0E5 /* TodayViewController.swift in Sources */,
 				F563FB7E24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift in Sources */,
