@@ -8,9 +8,9 @@
 
 import UIKit
 
-let searchTableCellId = "SearchTableViewCell"
+let recentKeyTableCellId = "RecentKeyTableViewCell"
 
-class SearchTableViewCell: UITableViewCell {
+class RecentKeyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var underLineView: UIView!

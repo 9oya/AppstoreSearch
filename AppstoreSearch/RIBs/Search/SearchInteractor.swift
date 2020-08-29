@@ -32,13 +32,12 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     weak var router: SearchRouting?
     weak var listener: SearchListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     override init(presenter: SearchPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
+    // MARK: - Life cycle
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
@@ -49,9 +48,44 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
         // TODO: Pause any business logic.
     }
     
-    // MARK: - SearchPresentableListener
+    // MARK: - Private
+    private var ituneseWrapperModel: ItunseWrapperModel?
     
-    func searchKeyword(keyword: String?) {
-        // TODO
+    private func itunseModelAt(indexPath: IndexPath) -> ItunseModel? {
+        if let wrapperModel = ituneseWrapperModel, let itunseModels = wrapperModel.results {
+            return itunseModels[indexPath.row]
+        } else {
+            return nil
+        }
     }
+    
+    // MARK: - SearchPresentableListener
+    func getRecentKeywords() {
+        
+    }
+    
+    func searchAppsWithKeyword(keyword: String?) {
+        SearchService.shared.getAppsByTitle(title: keyword!) { (result) in
+            self.ituneseWrapperModel = result
+            self.presenter.reloadTableView()
+        }
+    }
+    
+    func numberOfSections() -> Int {
+        return 1
+    }
+    
+    func numberOfRows() -> Int {
+        if let wrapperModel = ituneseWrapperModel {
+            return wrapperModel.resultCount
+        } else {
+            return 0
+        }
+    }
+    
+    // TODO
+//    func configureSearchTableCell(cell: , indexPath: IndexPath) {
+//        let itunseModel = itunseModelAt(indexPath: indexPath)
+//
+//    }
 }

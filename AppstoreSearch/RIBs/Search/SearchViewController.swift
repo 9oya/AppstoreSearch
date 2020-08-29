@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 
 protocol SearchPresentableListener: class {
-    func searchKeyword(keyword: String?)
+    func searchAppsWithKeyword(keyword: String?)
 }
 
 final class SearchViewController: UIViewController, SearchPresentable, SearchViewControllable {
@@ -49,7 +49,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: searchTableViewHeaderId) as! SearchTableViewHeader
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: recentKeyTableViewHeaderId) as! RecentKeyTableViewHeader
         view.titleLabel.text = "최근 검색어"
         return view
     }
@@ -59,7 +59,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: searchTableCellId, for: indexPath) as! SearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: recentKeyTableCellId, for: indexPath) as! RecentKeyTableViewCell
         cell.titleLabel.text = "Hello"
         return cell
     }
@@ -75,7 +75,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
         let txt = searchController.searchBar.text!
-        listener?.searchKeyword(keyword: txt)
+        listener?.searchAppsWithKeyword(keyword: txt)
     }
     
     // MARK: - UISearchBarDelegate
@@ -107,8 +107,10 @@ extension SearchViewController {
         }()
         navigationItem.searchController = searchController
         
-        searchTableView.register(SearchTableViewHeader.self, forHeaderFooterViewReuseIdentifier: searchTableViewHeaderId)
-        searchTableView.register(UINib(nibName: searchTableCellId, bundle: nil), forCellReuseIdentifier: searchTableCellId)
+        searchTableView.register(RecentKeyTableViewHeader.self, forHeaderFooterViewReuseIdentifier: recentKeyTableViewHeaderId)
+        searchTableView.register(UINib(nibName: recentKeyTableCellId, bundle: nil), forCellReuseIdentifier: recentKeyTableCellId)
+        searchTableView.register(UINib(nibName: autoComplTableCellId, bundle: nil), forCellReuseIdentifier: autoComplTableCellId)
+        searchTableView.register(UINib(nibName: searchResultTableCellId, bundle: nil), forCellReuseIdentifier: searchResultTableCellId)
         
         searchTableView.dataSource = self
         searchTableView.delegate = self

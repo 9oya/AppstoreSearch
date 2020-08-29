@@ -8,9 +8,9 @@
 
 import UIKit
 
-let searchTableViewHeaderId = "SearchTableViewHeader"
+let recentKeyTableViewHeaderId = "RecentKeyTableViewHeader"
 
-class SearchTableViewHeader: UITableViewHeaderFooterView {
+class RecentKeyTableViewHeader: UITableViewHeaderFooterView {
 
     // MARK: - Properties
     
@@ -26,7 +26,7 @@ class SearchTableViewHeader: UITableViewHeaderFooterView {
     }
 }
 
-extension SearchTableViewHeader {
+extension RecentKeyTableViewHeader {
     func configureContents() {
         contentView.backgroundColor = .systemBackground
         
