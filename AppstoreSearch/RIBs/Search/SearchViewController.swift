@@ -115,7 +115,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 70
+        switch listener!.getCurrTableCellType() {
+        case .recentKey:
+            return 70
+        case .autoCompl:
+            return 0
+        case .searchResult:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

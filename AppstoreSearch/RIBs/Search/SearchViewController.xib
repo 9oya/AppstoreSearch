@@ -18,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="eGN-4P-oFj">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="eGN-4P-oFj">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="727"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
             </subviews>
@@ -27,7 +27,7 @@
             <constraints>
                 <constraint firstItem="eGN-4P-oFj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="6Y4-fo-7Ak"/>
                 <constraint firstItem="eGN-4P-oFj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FNz-YV-QqK"/>
-                <constraint firstItem="eGN-4P-oFj" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Roa-hC-tU6"/>
+                <constraint firstItem="eGN-4P-oFj" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="60" id="Roa-hC-tU6"/>
                 <constraint firstItem="eGN-4P-oFj" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bEZ-8I-C7H"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

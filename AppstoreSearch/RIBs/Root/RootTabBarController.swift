@@ -31,10 +31,6 @@ final class RootTabBarController: UITabBarController, UITabBarControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        
-//        tabBar.alpha = 0.5
-//        tabBar.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
-        tabBar.isTranslucent = true
     }
     
     // MARK: - RootViewControllable
