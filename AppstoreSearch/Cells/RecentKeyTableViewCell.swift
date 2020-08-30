@@ -1,5 +1,5 @@
 //
-//  SearchTableViewCell.swift
+//  RecentKeyTableViewCell.swift
 //  AppstoreSearch
 //
 //  Created by Eido Goya on 2020/08/28.

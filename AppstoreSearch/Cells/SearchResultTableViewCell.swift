@@ -51,7 +51,7 @@ class SearchResultTableViewCell: UITableViewCell {
 
 extension SearchResultTableViewCell {
     private func setupLayout() {
-        openButton.layer.cornerRadius = 10.0
+        openButton.layer.cornerRadius = 30 / 2
         
         iconImgView.layer.cornerRadius = 10.0
         

@@ -32,6 +32,23 @@ final class KeywordService: KeywordServiceProtocol {
     }
     
     // MARK: - GET Services
+    func getRecentKeywors() -> [Keyword]? {
+        let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
+        let timeSort = NSSortDescriptor(key: #keyPath(Keyword.timeStamp), ascending: false)
+        let scoreSort = NSSortDescriptor(key: #keyPath(Keyword.score), ascending: false)
+        let titleSort = NSSortDescriptor(key: #keyPath(Keyword.title), ascending: true)
+        
+        fetchRequest.sortDescriptors = [timeSort, scoreSort, titleSort]
+        
+        let keywords: [Keyword]?
+        do {
+            keywords = try managedObjContext.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+        return keywords
+    }
+    
     func getKeywordByMatchingTitle(title: String) -> Keyword? {
         let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(Keyword.title), title])

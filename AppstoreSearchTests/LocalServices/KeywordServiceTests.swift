@@ -48,6 +48,24 @@ class KeywordServiceTests: XCTestCase {
         }
     }
     
+    func testKeyword_getRecentKeywors_result() {
+        // given
+        _ = mockKeywordService.createKeyword(title: "카카오뱅", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
+        
+        // when
+        let keywords = mockKeywordService.getRecentKeywors()
+        
+        // than
+        XCTAssertEqual(keywords?.count, 7)
+        XCTAssertTrue(keywords!.first!.title == "카카오뱅크 - 같지만 다른 은행")
+    }
+    
     func testKeyword_getKeywordsByTitle_resultCount() {
         // given
         _ = mockKeywordService.createKeyword(title: "카카오뱅", timeStamp: Date())
@@ -62,25 +80,6 @@ class KeywordServiceTests: XCTestCase {
         
         // than
         XCTAssertEqual(keywords?.count, 6)
-    }
-
-    func testKeyword_updateKeywordByTitle_resultValue() {
-        // given
-        let title = "카카오뱅"
-        _ = mockKeywordService.createKeyword(title: title, timeStamp: Date())
-        _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
-        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
-        _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
-        _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
-        _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
-        
-        // when
-        guard let keyword = mockKeywordService.updateKeywordScoreByMatchingTitle(title: title) else {
-            fatalError()
-        }
-        
-        // than
-        XCTAssertGreaterThan(keyword.score, 1)
     }
     
     func testKeyword_getKeywordsByTitle_resultOrder() {
@@ -101,6 +100,25 @@ class KeywordServiceTests: XCTestCase {
         
         // than
         XCTAssertEqual(keywords?.first?.title, title)
+    }
+    
+    func testKeyword_updateKeywordByTitle_resultValue() {
+        // given
+        let title = "카카오뱅"
+        _ = mockKeywordService.createKeyword(title: title, timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
+        
+        // when
+        guard let keyword = mockKeywordService.updateKeywordScoreByMatchingTitle(title: title) else {
+            fatalError()
+        }
+        
+        // than
+        XCTAssertGreaterThan(keyword.score, 1)
     }
 }
 
@@ -128,6 +146,23 @@ class MockKeywordService: KeywordServiceProtocol {
     }
     
     // MARK: - GET Services
+    func getRecentKeywors() -> [Keyword]? {
+        let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
+        let timeSort = NSSortDescriptor(key: #keyPath(Keyword.timeStamp), ascending: false)
+        let scoreSort = NSSortDescriptor(key: #keyPath(Keyword.score), ascending: false)
+        let titleSort = NSSortDescriptor(key: #keyPath(Keyword.title), ascending: true)
+        
+        fetchRequest.sortDescriptors = [timeSort, scoreSort, titleSort]
+        
+        let keywords: [Keyword]?
+        do {
+            keywords = try managedObjContext.fetch(fetchRequest)
+        } catch {
+            return nil
+        }
+        return keywords
+    }
+    
     func getKeywordByMatchingTitle(title: String) -> Keyword? {
         let fetchRequest: NSFetchRequest<Keyword> = Keyword.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(Keyword.title), title])

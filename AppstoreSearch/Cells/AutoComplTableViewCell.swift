@@ -8,7 +8,7 @@
 
 import UIKit
 
-let autoComplTableCellId = "AutoComplTalbeViewCell"
+let autoComplTableCellId = "AutoComplTableViewCell"
 
 class AutoComplTableViewCell: UITableViewCell {
 
