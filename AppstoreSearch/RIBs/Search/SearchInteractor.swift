@@ -10,7 +10,7 @@ import RIBs
 import RxSwift
 
 protocol SearchRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func pushToSearchDetail(itunseModel: ItunseModel)
 }
 
 protocol SearchPresentable: Presentable {
@@ -31,6 +31,8 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
 
     weak var router: SearchRouting?
     weak var listener: SearchListener?
+    
+    var disposeBag = DisposeBag()
 
     override init(presenter: SearchPresentable) {
         super.init(presenter: presenter)
@@ -54,49 +56,39 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     private var autoComplKeywords: [Keyword]?
     private var currTableCellType: SearchTableCellType = .recentKey
     
-    private func recentKeywordAt(indexPath: IndexPath) -> Keyword? {
-        if let _recentKeywords = recentKeywords {
-            return _recentKeywords[indexPath.row]
-        } else {
-            return nil
-        }
-    }
-    
-    private func autoComplKeywordAt(indexPath: IndexPath) -> Keyword? {
-        if let _autoComplKeywords = autoComplKeywords {
-            return _autoComplKeywords[indexPath.row]
-        } else {
-            return nil
-        }
-    }
-    
-    private func itunseModelAt(indexPath: IndexPath) -> ItunseModel? {
-        if let wrapperModel = ituneseWrapperModel, let itunseModels = wrapperModel.results {
-            return itunseModels[indexPath.row]
-        } else {
-            return nil
-        }
-    }
-    
     // MARK: - SearchPresentableListener
     func getCurrTableCellType() -> SearchTableCellType {
         return currTableCellType
     }
     
     func getRecentKeywords() {
-        currTableCellType = .recentKey
-        recentKeywords = KeywordService.shared.getRecentKeywors()
-        DispatchQueue.main.async {
-            self.presenter.reloadTableView()
-        }
+        Observable.just(KeywordService.shared.getRecentKeywors())
+            .do(onNext: { _ in
+                self.currTableCellType = .recentKey
+                self.autoComplKeywords = nil
+                self.ituneseWrapperModel = nil
+            })
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { keywords in
+                self.recentKeywords = keywords
+            }, onCompleted: {
+                self.presenter.reloadTableView()
+            }).disposed(by: disposeBag)
     }
     
     func getAutoComplKeywords(title: String) {
-        currTableCellType = .autoCompl
-        autoComplKeywords = KeywordService.shared.getKeywordsByContainTitle(title: title)
-        DispatchQueue.main.async {
-            self.presenter.reloadTableView()
-        }
+        Observable.just(KeywordService.shared.getKeywordsByContainTitle(title: title))
+            .do(onNext: { _ in
+                self.currTableCellType = .autoCompl
+                self.recentKeywords = nil
+                self.ituneseWrapperModel = nil
+            })
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { keywords in
+                self.autoComplKeywords = keywords
+            }, onCompleted: {
+                self.presenter.reloadTableView()
+            }).disposed(by: disposeBag)
     }
     
     func searchAppsWithTerm(title: String?) {
@@ -140,9 +132,39 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
         }
     }
     
+    func recentKeywordAt(indexPath: IndexPath) -> Keyword? {
+        if let _recentKeywords = recentKeywords {
+            return _recentKeywords[indexPath.row]
+        } else {
+            return nil
+        }
+    }
+    
+    func autoComplKeywordAt(indexPath: IndexPath) -> Keyword? {
+        if let _autoComplKeywords = autoComplKeywords {
+            return _autoComplKeywords[indexPath.row]
+        } else {
+            return nil
+        }
+    }
+    
+    func itunseModelAt(indexPath: IndexPath) -> ItunseModel? {
+        if let wrapperModel = ituneseWrapperModel, let itunseModels = wrapperModel.results {
+            return itunseModels[indexPath.row]
+        } else {
+            return nil
+        }
+    }
+    
     func configureRecentKeyTableCell(cell: RecentKeyTableViewCell, indexPath: IndexPath) {
         let keyword = recentKeywordAt(indexPath: indexPath)
         cell.titleLabel.text = keyword?.title
+        
+        if indexPath.row == numberOfRecentKeywords() - 1 {
+            cell.underLineView.isHidden = true
+        } else {
+            cell.underLineView.isHidden = false
+        }
     }
     
     func configureAutoComplTableCell(cell: AutoComplTableViewCell, indexPath: IndexPath) {
@@ -154,7 +176,7 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     
     func configureSearchTableCell(cell: SearchResultTableViewCell, indexPath: IndexPath) {
         if let itunseModel = itunseModelAt(indexPath: indexPath) {
-            let image: UIImage? = {
+            cell.iconImgView.image = {
                 let url = URL(string: itunseModel.artworkUrl60!)
                 if url != nil {
                     let data = try? Data(contentsOf: url!)
@@ -163,16 +185,12 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
                     return nil
                 }
             }()
+            cell.titleLabel.text = itunseModel.trackName
+            cell.subTitleLabel.text = itunseModel.description
             
             let userRate: Int = {
                 return Int(round(itunseModel.averageUserRating ?? 0))
             }()
-            
-            cell.iconImgView.image = image
-            
-            cell.titleLabel.text = itunseModel.trackName
-            cell.subTitleLabel.text = itunseModel.description
-            
             let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .regular, scale: .medium)
             cell.star1ImgView.image = UIImage(systemName: userRate < 1 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             cell.star2ImgView.image = UIImage(systemName: userRate < 2 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
@@ -182,8 +200,8 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             
             cell.downCntLabel.text = "\(itunseModel.userRatingCount)"
             
-            let screenShot1Img: UIImage? = {
-                let url = URL(string: itunseModel.screenshotUrls![0])
+            cell.screen1ImgView.image = {
+                let url = itunseModel.screenshotUrls?.count ?? 0 > 0 ? URL(string: itunseModel.screenshotUrls![0]) : nil
                 if url != nil {
                     let data = try? Data(contentsOf: url!)
                     return UIImage(data: data!)!
@@ -191,8 +209,8 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
                     return nil
                 }
             }()
-            let screenShot2Img: UIImage? = {
-                let url = URL(string: itunseModel.screenshotUrls![1])
+            cell.screen2ImgView.image = {
+                let url = itunseModel.screenshotUrls?.count ?? 0 > 1 ? URL(string: itunseModel.screenshotUrls![1]) : nil
                 if url != nil {
                     let data = try? Data(contentsOf: url!)
                     return UIImage(data: data!)!
@@ -200,8 +218,8 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
                     return nil
                 }
             }()
-            let screenShot3Img: UIImage? = {
-                let url = URL(string: itunseModel.screenshotUrls![2])
+            cell.screen3ImgView.image = {
+                let url = itunseModel.screenshotUrls?.count ?? 0 > 2 ? URL(string: itunseModel.screenshotUrls![2]) : nil
                 if url != nil {
                     let data = try? Data(contentsOf: url!)
                     return UIImage(data: data!)!
@@ -210,9 +228,11 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
                 }
             }()
             
-            cell.screen1ImgView.image = screenShot1Img
-            cell.screen2ImgView.image = screenShot2Img
-            cell.screen3ImgView.image = screenShot3Img
+            cell.openButtonAction = {
+                if let itunseModel = self.itunseModelAt(indexPath: indexPath) {
+                    self.router?.pushToSearchDetail(itunseModel: itunseModel)
+                }
+            }
         }
     }
 }

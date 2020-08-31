@@ -20,7 +20,8 @@ class SearchService: SearchServiceProtocol {
         urlComponent.queryItems = [
             URLQueryItem(name: "term", value: title),
             URLQueryItem(name: "entity", value: "software"),
-            URLQueryItem(name: "country", value: "kr")
+            URLQueryItem(name: "country", value: "kr"),
+            URLQueryItem(name: "limit", value: "20")
         ]
         
         var request = URLRequest(url: urlComponent.url!)

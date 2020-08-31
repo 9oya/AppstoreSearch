@@ -36,6 +36,8 @@ class SearchResultTableViewCell: UITableViewCell {
     @IBOutlet weak var screen3HeightConst: NSLayoutConstraint!
     @IBOutlet weak var screen3WidthConst: NSLayoutConstraint!
     
+    var openButtonAction: (() -> Void)? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
@@ -47,6 +49,9 @@ class SearchResultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func openButtonTapped(_ sender: UIButton) {
+        openButtonAction?()
+    }
 }
 
 extension SearchResultTableViewCell {

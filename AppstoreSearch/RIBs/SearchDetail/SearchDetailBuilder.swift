@@ -9,15 +9,16 @@
 import RIBs
 
 protocol SearchDetailDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
 }
 
 final class SearchDetailComponent: Component<SearchDetailDependency> {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
     
-    override init(dependency: SearchDetailDependency) {
+    fileprivate var itunseModel: ItunseModel
+    
+    init(dependency: SearchDetailDependency, itunseModel: ItunseModel) {
+        self.itunseModel = itunseModel
         super.init(dependency: dependency)
     }
 }
@@ -25,7 +26,7 @@ final class SearchDetailComponent: Component<SearchDetailDependency> {
 // MARK: - Builder
 
 protocol SearchDetailBuildable: Buildable {
-    func build(withListener listener: SearchDetailListener) -> SearchDetailRouting
+    func build(withListener listener: SearchDetailListener, itunseModel: ItunseModel) -> SearchDetailRouting
 }
 
 final class SearchDetailBuilder: Builder<SearchDetailDependency>, SearchDetailBuildable {
@@ -34,10 +35,11 @@ final class SearchDetailBuilder: Builder<SearchDetailDependency>, SearchDetailBu
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: SearchDetailListener) -> SearchDetailRouting {
-        let component = SearchDetailComponent(dependency: dependency)
+    func build(withListener listener: SearchDetailListener, itunseModel: ItunseModel) -> SearchDetailRouting {
+        let component = SearchDetailComponent(dependency: dependency, itunseModel: itunseModel)
         let viewController = SearchDetailViewController(nibName: "SearchDetailViewController", bundle: Bundle.main)
-        let interactor = SearchDetailInteractor(presenter: viewController)
+        let interactor = SearchDetailInteractor(presenter: viewController,
+                                                itunseModel: component.itunseModel)
         interactor.listener = listener
         return SearchDetailRouter(interactor: interactor, viewController: viewController)
     }

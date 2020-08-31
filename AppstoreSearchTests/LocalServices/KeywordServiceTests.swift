@@ -52,8 +52,10 @@ class KeywordServiceTests: XCTestCase {
         // given
         _ = mockKeywordService.createKeyword(title: "카카오뱅", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
+        
         _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        
         _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
@@ -62,7 +64,7 @@ class KeywordServiceTests: XCTestCase {
         let keywords = mockKeywordService.getRecentKeywors()
         
         // than
-        XCTAssertEqual(keywords?.count, 7)
+        XCTAssertEqual(keywords?.count, 6)
         XCTAssertTrue(keywords!.first!.title == "카카오뱅크 - 같지만 다른 은행")
     }
     
@@ -133,7 +135,11 @@ class MockKeywordService: KeywordServiceProtocol {
     }
     
     // MARK: - CREATE Services
-    func createKeyword(title: String, timeStamp: Date) -> Keyword {
+    func createKeyword(title: String, timeStamp: Date) -> Keyword? {
+        if getKeywordByMatchingTitle(title: title) != nil {
+            return nil
+        }
+        
         let keyword = Keyword(context: managedObjContext)
         keyword.title = title
         keyword.timeStamp = timeStamp

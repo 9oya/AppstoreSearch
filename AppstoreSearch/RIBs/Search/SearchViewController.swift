@@ -27,6 +27,12 @@ protocol SearchPresentableListener: class {
     
     func numberOfSearchResult() -> Int
     
+    func recentKeywordAt(indexPath: IndexPath) -> Keyword?
+    
+    func autoComplKeywordAt(indexPath: IndexPath) -> Keyword?
+    
+    func itunseModelAt(indexPath: IndexPath) -> ItunseModel?
+    
     func configureRecentKeyTableCell(cell: RecentKeyTableViewCell, indexPath: IndexPath)
     
     func configureAutoComplTableCell(cell: AutoComplTableViewCell, indexPath: IndexPath)
@@ -41,15 +47,17 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
     
     var searchController: UISearchController!
     
+    var isOnLoading: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayout()
+        listener?.getRecentKeywords()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        listener?.getRecentKeywords()
+        
     }
     
     // MARK: - Actions
@@ -58,7 +66,11 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
     weak var listener: SearchPresentableListener?
     
     func reloadTableView() {
-        searchTableView.reloadData()
+        view.hideSpinner()
+        UIView.transition(with: searchTableView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.searchTableView.isHidden = false
+            self.searchTableView.reloadData()
+        })
     }
     
     func beginUpdateTableView() {
@@ -67,6 +79,13 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
     
     func endUpdateTableView() {
         searchTableView.endUpdates()
+    }
+    
+    // MARK: - SearchViewControllable
+    func pushToSearchDetail(viewController: ViewControllable?) {
+        if let targetVC = viewController {
+            navigationController?.pushViewController(targetVC.uiviewController, animated: true)
+        }
     }
 }
 
@@ -114,6 +133,28 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch listener!.getCurrTableCellType() {
+        case .recentKey:
+            view.showSpinner()
+            isOnLoading = true
+            let txt = listener?.recentKeywordAt(indexPath: indexPath)?.title
+            UIView.transition(with: searchTableView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.searchTableView.isHidden = true
+                self.searchController.searchBar.text = txt
+                self.searchController.isActive = true
+            }) { _ in
+                self.isOnLoading = false
+                self.listener?.searchAppsWithTerm(title: txt)
+            }
+        case .autoCompl:
+            view.showSpinner()
+            listener?.searchAppsWithTerm(title: listener?.autoComplKeywordAt(indexPath: indexPath)?.title)
+        case .searchResult:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch listener!.getCurrTableCellType() {
         case .recentKey:
@@ -141,8 +182,10 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
-        let txt = searchController.searchBar.text!
-        listener?.getAutoComplKeywords(title: txt)
+        if searchController.isActive && !isOnLoading {
+            let txt = searchController.searchBar.text!
+            listener?.getAutoComplKeywords(title: txt)
+        }
     }
     
     // MARK: - UISearchBarDelegate
@@ -151,10 +194,12 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.isActive = false
         listener?.getRecentKeywords()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.showSpinner()
         let txt = searchBar.text!
         listener?.searchAppsWithTerm(title: txt)
     }

@@ -16,6 +16,5 @@ protocol SearchDependencySearchDetail: Dependency {
 }
 
 extension SearchComponent: SearchDetailDependency {
-
     // TODO: Implement properties to provide for SearchDetail scope.
 }

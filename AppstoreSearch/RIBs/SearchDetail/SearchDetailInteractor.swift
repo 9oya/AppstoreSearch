@@ -23,24 +23,29 @@ protocol SearchDetailListener: class {
 }
 
 final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentable>, SearchDetailInteractable, SearchDetailPresentableListener {
-
+    
     weak var router: SearchDetailRouting?
     weak var listener: SearchDetailListener?
-
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: SearchDetailPresentable) {
+    init(presenter: SearchDetailPresentable,
+         itunseModel: ItunseModel) {
+        self.itunseModel = itunseModel
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
     }
+    
+    // MARK: - Private
+    private var itunseModel: ItunseModel
 }

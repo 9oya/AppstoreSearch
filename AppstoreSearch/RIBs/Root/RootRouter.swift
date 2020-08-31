@@ -15,8 +15,6 @@ protocol RootInteractable: Interactable, TodayListener, GameListener, AppsListen
 
 protocol RootViewControllable: ViewControllable {
     func setupViewControllers(viewControllers: [ViewControllable])
-    
-    func replaceModal(viewController: ViewControllable?)
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
@@ -42,7 +40,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     override func didLoad() {
         super.didLoad()
-//        routeToSearch()
         setupViewControllers()
     }
     
@@ -102,12 +99,5 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         self.search = search
         
         viewController.setupViewControllers(viewControllers: [today.viewControllable, game.viewControllable, apps.viewControllable, update.viewControllable, search.viewControllable])
-    }
-    
-    private func routeToSearch() {
-        let search = searchBuilder.build(withListener: interactor)
-        self.search = search
-        attachChild(search)
-        viewController.replaceModal(viewController: search.viewControllable)
     }
 }

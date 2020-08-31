@@ -73,6 +73,7 @@
 		F5AB98D924F78CF000311F48 /* SearchComponent+SearchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98D824F78CF000311F48 /* SearchComponent+SearchDetail.swift */; };
 		F5B9085A24FA4C3E0020C7D9 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B9085824FA4C3E0020C7D9 /* SearchResultTableViewCell.swift */; };
 		F5B9085B24FA4C3E0020C7D9 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B9085924FA4C3E0020C7D9 /* SearchResultTableViewCell.xib */; };
+		F5B9085E24FC87170020C7D9 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B9085D24FC87170020C7D9 /* UIView+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		F5AB98D824F78CF000311F48 /* SearchComponent+SearchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchComponent+SearchDetail.swift"; sourceTree = "<group>"; };
 		F5B9085824FA4C3E0020C7D9 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		F5B9085924FA4C3E0020C7D9 /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		F5B9085D24FC87170020C7D9 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 		F58168E724F743C000762F9E /* AppstoreSearch */ = {
 			isa = PBXGroup;
 			children = (
+				F5B9085C24FC86D30020C7D9 /* Extensions */,
 				F563FB9E24F90AC60043E0E5 /* NetworkServices */,
 				F563FB8024F8C09C0043E0E5 /* LocalServices */,
 				F563FB7F24F8C06E0043E0E5 /* Utilities */,
@@ -430,6 +433,14 @@
 				F5AB98D024F77EE900311F48 /* SearchDetailViewController.xib */,
 			);
 			path = SearchDetail;
+			sourceTree = "<group>";
+		};
+		F5B9085C24FC86D30020C7D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F5B9085D24FC87170020C7D9 /* UIView+Helpers.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FCCC82CEE6F17DAFEFE6F945 /* Pods */ = {
@@ -648,6 +659,7 @@
 				F563FBAB24FA4B6E0043E0E5 /* AutoComplTableViewCell.swift in Sources */,
 				F563FB6F24F8ACD00043E0E5 /* RecentKeyTableViewCell.swift in Sources */,
 				F563FB4324F88CBA0043E0E5 /* RootComponent+Update.swift in Sources */,
+				F5B9085E24FC87170020C7D9 /* UIView+Helpers.swift in Sources */,
 				F5AB98D424F77EE900311F48 /* SearchDetailInteractor.swift in Sources */,
 				F563FB4924F897200043E0E5 /* AppsRouter.swift in Sources */,
 				F5AB98D224F77EE900311F48 /* SearchDetailViewController.swift in Sources */,

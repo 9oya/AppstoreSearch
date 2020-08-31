@@ -8,13 +8,13 @@
 
 import RIBs
 
-protocol SearchInteractable: Interactable {
+protocol SearchInteractable: Interactable, SearchDetailListener {
     var router: SearchRouting? { get set }
     var listener: SearchListener? { get set }
 }
 
 protocol SearchViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func pushToSearchDetail(viewController: ViewControllable?)
 }
 
 final class SearchRouter: ViewableRouter<SearchInteractable, SearchViewControllable>, SearchRouting {
@@ -30,4 +30,11 @@ final class SearchRouter: ViewableRouter<SearchInteractable, SearchViewControlla
     
     // MARK: - Private
     private var searchDetailBuilder: SearchDetailBuilder
+    
+    // MARK: - SearchRouting
+    func pushToSearchDetail(itunseModel: ItunseModel) {
+        let searchDetail = searchDetailBuilder.build(withListener: interactor, itunseModel: itunseModel)
+        attachChild(searchDetail)
+        viewController.pushToSearchDetail(viewController: searchDetail.viewControllable)
+    }
 }

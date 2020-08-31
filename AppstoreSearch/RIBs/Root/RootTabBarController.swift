@@ -34,7 +34,6 @@ final class RootTabBarController: UITabBarController, UITabBarControllerDelegate
     }
     
     // MARK: - RootViewControllable
-    
     func setupViewControllers(viewControllers: [ViewControllable]) {
         var ncArr = [UINavigationController]()
         for viewController in viewControllers {
@@ -69,7 +68,6 @@ final class RootTabBarController: UITabBarController, UITabBarControllerDelegate
     }
     
     // MARK: - Private
-    
     private var targetViewController: ViewControllable?
     private var animationInProgress = false
     
@@ -82,10 +80,4 @@ final class RootTabBarController: UITabBarController, UITabBarControllerDelegate
             }
         }
     }
-}
-
-// MARK: - SearchViewControllable
-
-extension RootTabBarController: SearchViewControllable {
-    
 }
