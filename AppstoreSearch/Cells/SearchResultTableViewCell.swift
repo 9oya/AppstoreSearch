@@ -58,7 +58,9 @@ extension SearchResultTableViewCell {
     private func setupLayout() {
         openButton.layer.cornerRadius = 30 / 2
         
-        iconImgView.layer.cornerRadius = 10.0
+        iconImgView.layer.cornerRadius = 15.0
+        iconImgView.layer.borderWidth = 1.0
+        iconImgView.layer.borderColor = UIColor.systemGray6.cgColor
         
         screen1ImgView.layer.cornerRadius = 10.0
         screen2ImgView.layer.cornerRadius = 10.0

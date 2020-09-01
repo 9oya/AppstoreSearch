@@ -9,6 +9,14 @@
 import UIKit
 
 extension UIView {
+    func addShadowView(offset:CGSize=CGSize(width: 0, height: 3), opacity:Float=0.3, radius:CGFloat=3, color:CGColor=UIColor.darkGray.cgColor, maskToBounds:Bool=false) {
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
+        self.layer.shadowColor = color
+        self.layer.masksToBounds = maskToBounds
+    }
+    
     func showSpinner() {
         let spinner: UIActivityIndicatorView = {
             let indicator = UIActivityIndicatorView()

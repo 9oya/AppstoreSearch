@@ -12,9 +12,6 @@ protocol SearchDetailDependency: Dependency {
 }
 
 final class SearchDetailComponent: Component<SearchDetailDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-    
     fileprivate var itunseModel: ItunseModel
     
     init(dependency: SearchDetailDependency, itunseModel: ItunseModel) {
@@ -24,7 +21,6 @@ final class SearchDetailComponent: Component<SearchDetailDependency> {
 }
 
 // MARK: - Builder
-
 protocol SearchDetailBuildable: Buildable {
     func build(withListener listener: SearchDetailListener, itunseModel: ItunseModel) -> SearchDetailRouting
 }

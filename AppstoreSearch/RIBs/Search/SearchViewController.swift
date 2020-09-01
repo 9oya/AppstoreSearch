@@ -84,6 +84,7 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
     // MARK: - SearchViewControllable
     func pushToSearchDetail(viewController: ViewControllable?) {
         if let targetVC = viewController {
+            targetVC.uiviewController.navigationController?.navigationBar.prefersLargeTitles = false
             navigationController?.pushViewController(targetVC.uiviewController, animated: true)
         }
     }
@@ -173,7 +174,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         case .autoCompl:
             return 44
         case .searchResult:
-            return 358
+            return 295
         }
     }
 }

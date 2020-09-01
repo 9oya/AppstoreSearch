@@ -48,4 +48,35 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
     
     // MARK: - Private
     private var itunseModel: ItunseModel
+    
+    // MARK: - SearchDetailPresentableListener
+    func configureView(view: SearchDetailViewController) {
+        view.iconImgView.image = {
+            let url = URL(string: itunseModel.artworkUrl512!)
+            if url != nil {
+                let data = try? Data(contentsOf: url!)
+                return UIImage(data: data!)!
+            } else {
+                return nil
+            }
+        }()
+        
+        view.titleLabel.text = itunseModel.trackName
+        view.sellerLabel.text = itunseModel.sellerName
+        view.userRatingLabel.text = String(format: "%.1f", itunseModel.averageUserRating!)
+        view.contentRatingLabel.text = itunseModel.contentAdvisoryRating
+        view.contentRatingGuideLabel.text = "연령"
+        view.rankLabel.text = "#0"
+        view.genresLabel.text = itunseModel.genres?.joined()
+        
+        let userRate: Int = {
+            return Int(round(itunseModel.averageUserRating ?? 0))
+        }()
+        let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .regular, scale: .medium)
+        view.star1ImgView.image = UIImage(systemName: userRate < 1 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        view.star2ImgView.image = UIImage(systemName: userRate < 2 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        view.star3ImgView.image = UIImage(systemName: userRate < 3 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        view.star4ImgView.image = UIImage(systemName: userRate < 4 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        view.star5ImgView.image = UIImage(systemName: userRate < 5 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+    }
 }
