@@ -39,7 +39,6 @@
 		F563FB7D24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7B24F8BFD10043E0E5 /* Keyword+CoreDataProperties.swift */; };
 		F563FB7E24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB7C24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift */; };
 		F563FB8224F8C1230043E0E5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB8124F8C1230043E0E5 /* CoreDataStack.swift */; };
-		F563FB8A24F8C29B0043E0E5 /* AppstoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */; };
 		F563FB9724F8C2F40043E0E5 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9624F8C2F40043E0E5 /* TestCoreDataStack.swift */; };
 		F563FB9924F8C3490043E0E5 /* KeywordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9824F8C3490043E0E5 /* KeywordService.swift */; };
 		F563FB9B24F8C3690043E0E5 /* KeywordServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563FB9A24F8C3690043E0E5 /* KeywordServiceTests.swift */; };
@@ -130,7 +129,6 @@
 		F563FB7C24F8BFD10043E0E5 /* Keyword+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyword+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F563FB8124F8C1230043E0E5 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F563FB8724F8C29B0043E0E5 /* AppstoreSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstoreSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreSearchTests.swift; sourceTree = "<group>"; };
 		F563FB8B24F8C29B0043E0E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F563FB9624F8C2F40043E0E5 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		F563FB9824F8C3490043E0E5 /* KeywordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordService.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 			children = (
 				F563FBA324F9DF5F0043E0E5 /* NetworkServices */,
 				F563FB9124F8C2AF0043E0E5 /* LocalServices */,
-				F563FB8924F8C29B0043E0E5 /* AppstoreSearchTests.swift */,
 				F563FB8B24F8C29B0043E0E5 /* Info.plist */,
 			);
 			path = AppstoreSearchTests;
@@ -632,7 +629,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F563FB8A24F8C29B0043E0E5 /* AppstoreSearchTests.swift in Sources */,
 				F563FBA524F9DF790043E0E5 /* SearchServiceTests.swift in Sources */,
 				F563FB9724F8C2F40043E0E5 /* TestCoreDataStack.swift in Sources */,
 				F563FB9B24F8C3690043E0E5 /* KeywordServiceTests.swift in Sources */,

@@ -50,11 +50,14 @@ class KeywordServiceTests: XCTestCase {
     
     func testKeyword_getRecentKeywors_result() {
         // given
+        let title = "카카오뱅크"
         _ = mockKeywordService.createKeyword(title: "카카오뱅", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅ㅋ", timeStamp: Date())
         
-        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
-        _ = mockKeywordService.createKeyword(title: "카카오뱅크", timeStamp: Date())
+        _ = mockKeywordService.createKeyword(title: title, timeStamp: Date())
+        if mockKeywordService.getKeywordByMatchingTitle(title: title) == nil {
+            _ = mockKeywordService.createKeyword(title: title, timeStamp: Date())
+        }
         
         _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())

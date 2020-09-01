@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SearchServiceProtocol {
-    
+    func getAppsByTitle(title: String, completion: @escaping (_ result: ItunseWrapperModel) -> Void)
 }
