@@ -35,7 +35,7 @@ protocol SearchPresentableListener: class {
     
     func configureRecentKeyTableCell(cell: RecentKeyTableViewCell, indexPath: IndexPath)
     
-    func configureAutoComplTableCell(cell: AutoComplTableViewCell, indexPath: IndexPath)
+    func configureAutoComplTableCell(cell: AutoComplTableViewCell, indexPath: IndexPath, title: String)
     
     func configureSearchTableCell(cell: SearchResultTableViewCell, indexPath: IndexPath)
 }
@@ -57,7 +57,6 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     // MARK: - Actions
@@ -122,7 +121,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: autoComplTableCellId, for: indexPath) as? AutoComplTableViewCell else {
                 fatalError()
             }
-            listener?.configureAutoComplTableCell(cell: cell, indexPath: indexPath)
+            listener?.configureAutoComplTableCell(cell: cell, indexPath: indexPath, title: searchController.searchBar.text!)
             return cell
         case .searchResult:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: searchResultTableCellId, for: indexPath) as? SearchResultTableViewCell else {
@@ -149,6 +148,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
                 self.listener?.searchAppsWithTerm(title: txt)
             }
         case .autoCompl:
+            searchController.searchBar.endEditing(true)
             view.showSpinner()
             listener?.searchAppsWithTerm(title: listener?.autoComplKeywordAt(indexPath: indexPath)?.title)
         case .searchResult:

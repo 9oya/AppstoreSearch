@@ -20,10 +20,6 @@ final class KeywordService: KeywordServiceProtocol {
     
     // MARK: - CREATE Services
     func createKeyword(title: String, timeStamp: Date) -> Keyword? {
-        if getKeywordByMatchingTitle(title: title) != nil {
-            return nil
-        }
-        
         let keyword = Keyword(context: managedObjContext)
         keyword.title = title
         keyword.timeStamp = timeStamp
@@ -84,10 +80,11 @@ final class KeywordService: KeywordServiceProtocol {
     }
     
     // MARK: - UPDATE Services
-    func updateKeywordScoreByMatchingTitle(title: String) -> Keyword? {
+    func updateKeywordScoreAndDateByMatchingTitle(title: String) -> Keyword? {
         guard let keyword = getKeywordByMatchingTitle(title: title) else {
             return nil
         }
+        keyword.timeStamp = Date()
         keyword.score += 1
         managedObjContext.perform {
             self.coreDataStack.saveContext(self.managedObjContext)

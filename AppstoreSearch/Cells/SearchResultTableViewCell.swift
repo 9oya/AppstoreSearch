@@ -16,7 +16,7 @@ class SearchResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
-    @IBOutlet weak var downCntLabel: UILabel!
+    @IBOutlet weak var userRatingCntLabel: UILabel!
     
     @IBOutlet weak var openButton: UIButton!
     

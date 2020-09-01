@@ -12,6 +12,12 @@ import UIKit
 
 protocol SearchDetailPresentableListener: class {
     func configureView(view: SearchDetailViewController)
+    
+    func numberOfScreenShots() -> Int
+    
+    func screenShotUrlAt(indexPath: IndexPath) -> String?
+    
+    func configurePrevCollectionCell(indexPath: IndexPath, cell: PrevCollectionViewCell)
 }
 
 final class SearchDetailViewController: UIViewController, SearchDetailPresentable, SearchDetailViewControllable {
@@ -36,6 +42,8 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
     @IBOutlet weak var userRatingCntLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var contentRatingGuideLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var versionDateLabel: UILabel!
     @IBOutlet weak var userRatingLargeLabel: UILabel!
     
     @IBOutlet weak var openButton: UIButton!
@@ -55,6 +63,7 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
     @IBOutlet weak var descTextView: UITextView!
     
     @IBOutlet weak var featureTxtViewHeightConstaint: NSLayoutConstraint!
+    @IBOutlet weak var descTxtViewHeightConstaint: NSLayoutConstraint!
     
     weak var listener: SearchDetailPresentableListener?
     
@@ -75,15 +84,49 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
     }
     
     @IBAction func moreButtonTapped(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
+            return
+        }))
+        
+        let shareAction = UIAlertAction(title: "앱 공유하기...", style: .default, handler: { (action) in
+            return
+        })
+        shareAction.setValue(UIImage(systemName: "square.and.arrow.up"), forKey: "image")
+        actionSheet.addAction(shareAction)
+        
+        let otherAppsAction = UIAlertAction(title: "이 개발자의 다른 앱 보기", style: .default, handler: { (action) in
+            return
+        })
+        otherAppsAction.setValue(UIImage(systemName: "person.crop.circle"), forKey: "image")
+        actionSheet.addAction(otherAppsAction)
+        
+        present(actionSheet, animated: true, completion: nil)
     }
     
     @IBAction func versionHistoryButtonTapped(_ sender: UIButton) {
     }
     
-    @IBAction func moreTxtViewButtonTapped(_ sender: UIButton) {
+    @IBAction func moreFeatureTxtButtonTapped(_ sender: UIButton) {
+        featureTextView.text = featureTextView.text.replacingOccurrences(of: "\n\0", with: "\n\n")
+        
+        let size = CGSize(width: (view.frame.width - 40), height: .infinity)
+        let estimatedSize = featureTextView.sizeThatFits(size)
+        UIView.animate(withDuration: 0.5) {
+            self.featureTxtViewHeightConstaint.constant = estimatedSize.height
+        }
+        moreFeatureTxtButton.isHidden = true
     }
     
     @IBAction func moreDescTxtButtonTapped(_ sender: UIButton) {
+        descTextView.text = descTextView.text.replacingOccurrences(of: "\n\0", with: "\n\n")
+        
+        let size = CGSize(width: (view.frame.width - 40), height: .infinity)
+        let estimatedSize = descTextView.sizeThatFits(size)
+        UIView.animate(withDuration: 0.5) {
+            self.descTxtViewHeightConstaint.constant = estimatedSize.height
+        }
+        moreDescTxtButton.isHidden = true
     }
     
     @IBAction func sellerButtonTapped(_ sender: UIButton) {
@@ -114,6 +157,40 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
     }
 }
 
+extension SearchDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return listener?.numberOfScreenShots() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prevCollectionCellId, for: indexPath) as? PrevCollectionViewCell else {
+            fatalError()
+        }
+        listener?.configurePrevCollectionCell(indexPath: indexPath, cell: cell)
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 210, height: 455)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
+
 extension SearchDetailViewController {
     // MARK: - Private
     private func setupLayout() {
@@ -131,5 +208,10 @@ extension SearchDetailViewController {
         moreDescTxtButton.addShadowView(offset: CGSize(width: -10, height: 0), opacity: 1, radius: 10, color: UIColor.white.cgColor, maskToBounds: false)
         
         reviewButton.titleLabel?.lineBreakMode = .byClipping
+        
+        prevCollectionView.register(UINib(nibName: prevCollectionCellId, bundle: nil), forCellWithReuseIdentifier: prevCollectionCellId)
+        
+        prevCollectionView.dataSource = self
+        prevCollectionView.delegate = self
     }
 }

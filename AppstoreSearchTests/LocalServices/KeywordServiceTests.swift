@@ -93,7 +93,7 @@ class KeywordServiceTests: XCTestCase {
         _ = mockKeywordService.createKeyword(title: "카카오뱅쿠", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅킹", timeStamp: Date())
         _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
-        guard let _ = mockKeywordService.updateKeywordScoreByMatchingTitle(title: title) else {
+        guard let _ = mockKeywordService.updateKeywordScoreAndDateByMatchingTitle(title: title) else {
             fatalError()
         }
         
@@ -115,7 +115,7 @@ class KeywordServiceTests: XCTestCase {
         _ = mockKeywordService.createKeyword(title: "카카오뱅크 - 같지만 다른 은행", timeStamp: Date())
         
         // when
-        guard let keyword = mockKeywordService.updateKeywordScoreByMatchingTitle(title: title) else {
+        guard let keyword = mockKeywordService.updateKeywordScoreAndDateByMatchingTitle(title: title) else {
             fatalError()
         }
         
@@ -136,10 +136,6 @@ class MockKeywordService: KeywordServiceProtocol {
     
     // MARK: - CREATE Services
     func createKeyword(title: String, timeStamp: Date) -> Keyword? {
-        if getKeywordByMatchingTitle(title: title) != nil {
-            return nil
-        }
-        
         let keyword = Keyword(context: managedObjContext)
         keyword.title = title
         keyword.timeStamp = timeStamp
@@ -200,10 +196,11 @@ class MockKeywordService: KeywordServiceProtocol {
     }
     
     // MARK: - UPDATE Services
-    func updateKeywordScoreByMatchingTitle(title: String) -> Keyword? {
+    func updateKeywordScoreAndDateByMatchingTitle(title: String) -> Keyword? {
         guard let keyword = getKeywordByMatchingTitle(title: title) else {
             return nil
         }
+        keyword.timeStamp = Date()
         keyword.score += 1
         managedObjContext.perform {
             self.coreDataStack.saveContext(self.managedObjContext)

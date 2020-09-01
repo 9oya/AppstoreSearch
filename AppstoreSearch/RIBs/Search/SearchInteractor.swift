@@ -95,7 +95,11 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
         currTableCellType = .searchResult
         SearchService.shared.getAppsByTitle(title: title!) { (result) in
             
-            _ = KeywordService.shared.createKeyword(title: title!, timeStamp: Date())
+            if KeywordService.shared.getKeywordByMatchingTitle(title: title!) != nil {
+                _ = KeywordService.shared.updateKeywordScoreAndDateByMatchingTitle(title: title!)
+            } else {
+                _ = KeywordService.shared.createKeyword(title: title!, timeStamp: Date())
+            }
             
             self.ituneseWrapperModel = result
             DispatchQueue.main.async {
@@ -167,11 +171,14 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
         }
     }
     
-    func configureAutoComplTableCell(cell: AutoComplTableViewCell, indexPath: IndexPath) {
+    func configureAutoComplTableCell(cell: AutoComplTableViewCell, indexPath: IndexPath, title: String) {
         let keyword = autoComplKeywordAt(indexPath: indexPath)
         let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .regular, scale: .small)
         cell.imgView.image = UIImage(systemName: "magnifyingglass", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
-        cell.titleLabel.text = keyword?.title
+        
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (keyword?.title!)!)
+        attributedString.setColorForText(textForAttribute: title, withColor: .label, isCaseSensitive: true)
+        cell.titleLabel.attributedText = attributedString
     }
     
     func configureSearchTableCell(cell: SearchResultTableViewCell, indexPath: IndexPath) {
@@ -179,8 +186,11 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             cell.iconImgView.image = {
                 let url = URL(string: itunseModel.artworkUrl60!)
                 if url != nil {
-                    let data = try? Data(contentsOf: url!)
-                    return UIImage(data: data!)!
+                    if let data = try? Data(contentsOf: url!) {
+                        return UIImage(data: data) ?? nil
+                    } else {
+                        return nil
+                    }
                 } else {
                     return nil
                 }
@@ -198,13 +208,16 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             cell.star4ImgView.image = UIImage(systemName: userRate < 4 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             cell.star5ImgView.image = UIImage(systemName: userRate < 5 ? "star" : "star.fill", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             
-            cell.downCntLabel.text = "\(itunseModel.userRatingCount)"
+            cell.userRatingCntLabel.text = "\(itunseModel.userRatingCount.formatUsingAbbrevation())"
             
             cell.screen1ImgView.image = {
                 let url = itunseModel.screenshotUrls?.count ?? 0 > 0 ? URL(string: itunseModel.screenshotUrls![0]) : nil
                 if url != nil {
-                    let data = try? Data(contentsOf: url!)
-                    return UIImage(data: data!)!
+                    if let data = try? Data(contentsOf: url!) {
+                        return UIImage(data: data) ?? nil
+                    } else {
+                        return nil
+                    }
                 } else {
                     return nil
                 }
@@ -212,8 +225,11 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             cell.screen2ImgView.image = {
                 let url = itunseModel.screenshotUrls?.count ?? 0 > 1 ? URL(string: itunseModel.screenshotUrls![1]) : nil
                 if url != nil {
-                    let data = try? Data(contentsOf: url!)
-                    return UIImage(data: data!)!
+                    if let data = try? Data(contentsOf: url!) {
+                        return UIImage(data: data) ?? nil
+                    } else {
+                        return nil
+                    }
                 } else {
                     return nil
                 }
@@ -221,8 +237,11 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
             cell.screen3ImgView.image = {
                 let url = itunseModel.screenshotUrls?.count ?? 0 > 2 ? URL(string: itunseModel.screenshotUrls![2]) : nil
                 if url != nil {
-                    let data = try? Data(contentsOf: url!)
-                    return UIImage(data: data!)!
+                    if let data = try? Data(contentsOf: url!) {
+                        return UIImage(data: data) ?? nil
+                    } else {
+                        return nil
+                    }
                 } else {
                     return nil
                 }

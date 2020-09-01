@@ -17,16 +17,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CVs-cq-toc">
-                        <rect key="frame" x="20" y="9.5" width="25" height="25"/>
+                        <rect key="frame" x="20" y="12" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="O3w-5F-BPP"/>
-                            <constraint firstAttribute="width" constant="25" id="Pjy-ay-VwH"/>
+                            <constraint firstAttribute="height" constant="20" id="O3w-5F-BPP"/>
+                            <constraint firstAttribute="width" constant="20" id="Pjy-ay-VwH"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLI-Cd-xc2">
-                        <rect key="frame" x="50" y="11.5" width="250" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="45" y="10" width="255" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                        <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uj5-be-87T">
