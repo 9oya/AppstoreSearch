@@ -51,6 +51,7 @@ struct ItunseModel: Codable {
     let trackCensoredName: String?
     let languageCodesISO2A: [String]
     let fileSizeBytes: String
+    let sellerUrl: String?
     let contentAdvisoryRating: String
     let averageUserRatingForCurrentVersion: Float
     let userRatingCountForCurrentVersion: Int
@@ -96,6 +97,7 @@ struct ItunseModel: Codable {
         case trackCensoredName
         case languageCodesISO2A
         case fileSizeBytes
+        case sellerUrl
         case contentAdvisoryRating
         case averageUserRatingForCurrentVersion
         case userRatingCountForCurrentVersion
@@ -143,6 +145,7 @@ struct ItunseModel: Codable {
         self.trackCensoredName = try? valueContainer.decode(String.self, forKey: CodingKeys.trackCensoredName)
         self.languageCodesISO2A = try valueContainer.decode([String].self, forKey: CodingKeys.languageCodesISO2A)
         self.fileSizeBytes = try valueContainer.decode(String.self, forKey: CodingKeys.fileSizeBytes)
+        self.sellerUrl = try? valueContainer.decode(String.self, forKey: CodingKeys.sellerUrl)
         self.contentAdvisoryRating = try valueContainer.decode(String.self, forKey: CodingKeys.contentAdvisoryRating)
         self.averageUserRatingForCurrentVersion = try valueContainer.decode(Float.self, forKey: CodingKeys.averageUserRatingForCurrentVersion)
         self.userRatingCountForCurrentVersion = try valueContainer.decode(Int.self, forKey: CodingKeys.userRatingCountForCurrentVersion)

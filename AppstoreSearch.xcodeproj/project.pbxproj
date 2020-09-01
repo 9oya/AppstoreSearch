@@ -59,6 +59,10 @@
 		F588BF2A24FE186A002DB9C6 /* PrevCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F588BF2824FE186A002DB9C6 /* PrevCollectionViewCell.xib */; };
 		F588BF2C24FE1A13002DB9C6 /* NSMutableAttributedString+Coloring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F588BF2B24FE1A13002DB9C6 /* NSMutableAttributedString+Coloring.swift */; };
 		F588BF2E24FE2BF7002DB9C6 /* Int+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F588BF2D24FE2BF7002DB9C6 /* Int+Helpers.swift */; };
+		F588BF3524FE34D7002DB9C6 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F588BF3324FE34D7002DB9C6 /* InfoTableViewCell.swift */; };
+		F588BF3624FE34D7002DB9C6 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F588BF3424FE34D7002DB9C6 /* InfoTableViewCell.xib */; };
+		F588BF3924FE4B25002DB9C6 /* CmmtCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F588BF3724FE4B25002DB9C6 /* CmmtCollectionViewCell.swift */; };
+		F588BF3A24FE4B25002DB9C6 /* CmmtCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F588BF3824FE4B25002DB9C6 /* CmmtCollectionViewCell.xib */; };
 		F5AB98BD24F7643200311F48 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98B924F7643200311F48 /* RootRouter.swift */; };
 		F5AB98BE24F7643200311F48 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98BA24F7643200311F48 /* RootTabBarController.swift */; };
 		F5AB98BF24F7643200311F48 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB98BB24F7643200311F48 /* RootBuilder.swift */; };
@@ -149,6 +153,10 @@
 		F588BF2824FE186A002DB9C6 /* PrevCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevCollectionViewCell.xib; sourceTree = "<group>"; };
 		F588BF2B24FE1A13002DB9C6 /* NSMutableAttributedString+Coloring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Coloring.swift"; sourceTree = "<group>"; };
 		F588BF2D24FE2BF7002DB9C6 /* Int+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Helpers.swift"; sourceTree = "<group>"; };
+		F588BF3324FE34D7002DB9C6 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		F588BF3424FE34D7002DB9C6 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
+		F588BF3724FE4B25002DB9C6 /* CmmtCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmmtCollectionViewCell.swift; sourceTree = "<group>"; };
+		F588BF3824FE4B25002DB9C6 /* CmmtCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CmmtCollectionViewCell.xib; sourceTree = "<group>"; };
 		F5AB98B924F7643200311F48 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		F5AB98BA24F7643200311F48 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		F5AB98BB24F7643200311F48 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -250,13 +258,17 @@
 			children = (
 				F563FBA924FA4B6E0043E0E5 /* AutoComplTableViewCell.swift */,
 				F563FBAA24FA4B6E0043E0E5 /* AutoComplTableViewCell.xib */,
+				F588BF3724FE4B25002DB9C6 /* CmmtCollectionViewCell.swift */,
+				F588BF3824FE4B25002DB9C6 /* CmmtCollectionViewCell.xib */,
+				F588BF3324FE34D7002DB9C6 /* InfoTableViewCell.swift */,
+				F588BF3424FE34D7002DB9C6 /* InfoTableViewCell.xib */,
+				F588BF2724FE186A002DB9C6 /* PrevCollectionViewCell.swift */,
+				F588BF2824FE186A002DB9C6 /* PrevCollectionViewCell.xib */,
 				F563FB6D24F8ACD00043E0E5 /* RecentKeyTableViewCell.swift */,
 				F563FB6E24F8ACD00043E0E5 /* RecentKeyTableViewCell.xib */,
 				F563FB7524F8B54D0043E0E5 /* RecentKeyTableViewHeader.swift */,
 				F5B9085824FA4C3E0020C7D9 /* SearchResultTableViewCell.swift */,
 				F5B9085924FA4C3E0020C7D9 /* SearchResultTableViewCell.xib */,
-				F588BF2724FE186A002DB9C6 /* PrevCollectionViewCell.swift */,
-				F588BF2824FE186A002DB9C6 /* PrevCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -555,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F563FB6124F8973D0043E0E5 /* TodayViewController.xib in Resources */,
+				F588BF3624FE34D7002DB9C6 /* InfoTableViewCell.xib in Resources */,
 				F58168F524F743C200762F9E /* LaunchScreen.storyboard in Resources */,
 				F563FB7024F8ACD00043E0E5 /* RecentKeyTableViewCell.xib in Resources */,
 				F563FB4124F88B520043E0E5 /* UpdateViewController.xib in Resources */,
@@ -562,6 +575,7 @@
 				F5B9085B24FA4C3E0020C7D9 /* SearchResultTableViewCell.xib in Resources */,
 				F5AB98CA24F7645500311F48 /* SearchViewController.xib in Resources */,
 				F563FBAC24FA4B6E0043E0E5 /* AutoComplTableViewCell.xib in Resources */,
+				F588BF3A24FE4B25002DB9C6 /* CmmtCollectionViewCell.xib in Resources */,
 				F563FB5724F8972E0043E0E5 /* GameViewController.xib in Resources */,
 				F563FB4D24F897200043E0E5 /* AppsViewController.xib in Resources */,
 				F5AB98D524F77EE900311F48 /* SearchDetailViewController.xib in Resources */,
@@ -670,11 +684,13 @@
 				F563FB8224F8C1230043E0E5 /* CoreDataStack.swift in Sources */,
 				F563FB4A24F897200043E0E5 /* AppsViewController.swift in Sources */,
 				F58168E924F743C000762F9E /* AppDelegate.swift in Sources */,
+				F588BF3524FE34D7002DB9C6 /* InfoTableViewCell.swift in Sources */,
 				F5AB98C024F7643200311F48 /* RootInteractor.swift in Sources */,
 				F563FBAB24FA4B6E0043E0E5 /* AutoComplTableViewCell.swift in Sources */,
 				F563FB6F24F8ACD00043E0E5 /* RecentKeyTableViewCell.swift in Sources */,
 				F563FB4324F88CBA0043E0E5 /* RootComponent+Update.swift in Sources */,
 				F5B9085E24FC87170020C7D9 /* UIView+Helpers.swift in Sources */,
+				F588BF3924FE4B25002DB9C6 /* CmmtCollectionViewCell.swift in Sources */,
 				F5AB98D424F77EE900311F48 /* SearchDetailInteractor.swift in Sources */,
 				F588BF2E24FE2BF7002DB9C6 /* Int+Helpers.swift in Sources */,
 				F563FB4924F897200043E0E5 /* AppsRouter.swift in Sources */,

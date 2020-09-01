@@ -10,7 +10,7 @@ import RIBs
 import RxSwift
 
 protocol SearchDetailRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func openUrl(url: URL, from view: UIViewController)
 }
 
 protocol SearchDetailPresentable: Presentable {
@@ -27,11 +27,20 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
     weak var router: SearchDetailRouting?
     weak var listener: SearchDetailListener?
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     init(presenter: SearchDetailPresentable,
          itunseModel: ItunseModel) {
         self.itunseModel = itunseModel
+        self.infoDictArr = [
+            ["guide": "제공자", "content": itunseModel.sellerName],
+            ["guide": "크기", "content": ByteCountFormatter.string(fromByteCount: Int64(itunseModel.fileSizeBytes)!, countStyle: .file)],
+            ["guide": "카테고리", "content": itunseModel.genres!.joined(separator: ", ")],
+            ["guide": "호환성", "content": "iPhone"],
+            ["guide": "언어", "content": itunseModel.languageCodesISO2A.joined(separator: ", ")],
+            ["guide": "연령", "content": itunseModel.contentAdvisoryRating],
+            ["guide": "저작권", "content": "\u{000A9} \(itunseModel.sellerName)"],
+            ["guide": "개발자 웹 사이트", "content": itunseModel.sellerUrl ?? ""]
+        ]
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -48,14 +57,18 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
     
     // MARK: - Private
     private var itunseModel: ItunseModel
+    private var infoDictArr: [[String: String]]
     
     // MARK: - SearchDetailPresentableListener
     func configureView(view: SearchDetailViewController) {
         view.iconImgView.image = {
             let url = URL(string: itunseModel.artworkUrl512!)
             if url != nil {
-                let data = try? Data(contentsOf: url!)
-                return UIImage(data: data!)!
+                if let data = try? Data(contentsOf: url!) {
+                    return UIImage(data: data)!
+                } else {
+                    return nil
+                }
             } else {
                 return nil
             }
@@ -63,8 +76,11 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
         
         view.titleLabel.text = itunseModel.trackName
         view.sellerLabel.text = itunseModel.sellerName
+        view.sellerBtnLabel.text = itunseModel.sellerName
+        view.sellerBtnGuideLabel.text = "개발자"
         view.userRatingLabel.text = String(format: "%.1f", itunseModel.averageUserRating!)
         view.userRatingLargeLabel.text = String(format: "%.1f", itunseModel.averageUserRating!)
+        view.userRatingCntLabel.text = "\(itunseModel.userRatingCount.formatUsingAbbrevation())개의 평가"
         view.contentRatingLabel.text = itunseModel.contentAdvisoryRating
         view.contentRatingGuideLabel.text = "연령"
         view.rankLabel.text = "0"
@@ -123,6 +139,45 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
             } else {
                 cell.screenShotImgView.image = nil
             }
+        }
+    }
+    
+    func numberOfInfos() -> Int {
+        let numberOfInfos = 7
+        if itunseModel.sellerUrl != nil  {
+            return numberOfInfos + 1
+        } else {
+            return numberOfInfos
+        }
+    }
+    
+    func infoDictAt(indexPath: IndexPath) -> [String: String] {
+        return infoDictArr[indexPath.row]
+    }
+    
+    func configureInfoTableCell(indexPath: IndexPath, cell: InfoTableViewCell) {
+        let infoDict = infoDictAt(indexPath: indexPath)
+        cell.guideLabel.text = infoDict["guide"]
+        cell.contentLabel.text = infoDict["content"]
+        
+        if indexPath.row == numberOfInfos() - 1 {
+            cell.underLineView.isHidden = true
+            if itunseModel.sellerUrl != nil {
+                cell.guideLabel.textColor = .systemBlue
+                cell.contentLabel.isHidden = true
+                cell.iconImgView.isHidden = false
+            }
+        } else {
+            cell.underLineView.isHidden = false
+            cell.guideLabel.textColor = .systemGray
+            cell.contentLabel.isHidden = false
+            cell.iconImgView.isHidden = true
+        }
+    }
+    
+    func openUrl(url: String, from view: UIViewController) {
+        if let url = URL(string: url) {
+            router?.openUrl(url: url, from: view)
         }
     }
 }

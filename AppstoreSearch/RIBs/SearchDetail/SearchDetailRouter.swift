@@ -7,6 +7,7 @@
 //
 
 import RIBs
+import SafariServices
 
 protocol SearchDetailInteractable: Interactable {
     var router: SearchDetailRouting? { get set }
@@ -23,5 +24,13 @@ final class SearchDetailRouter: ViewableRouter<SearchDetailInteractable, SearchD
     override init(interactor: SearchDetailInteractable, viewController: SearchDetailViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    // MARK: - SearchDetailRouting
+    func openUrl(url: URL, from view: UIViewController) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let vc = SFSafariViewController(url: url, configuration: config)
+        view.present(vc, animated: true)
     }
 }

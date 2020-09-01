@@ -18,13 +18,21 @@ protocol SearchDetailPresentableListener: class {
     func screenShotUrlAt(indexPath: IndexPath) -> String?
     
     func configurePrevCollectionCell(indexPath: IndexPath, cell: PrevCollectionViewCell)
+    
+    func numberOfInfos() -> Int
+    
+    func infoDictAt(indexPath: IndexPath) -> [String: String]
+    
+    func configureInfoTableCell(indexPath: IndexPath, cell: InfoTableViewCell)
+    
+    func openUrl(url: String, from view: UIViewController)
 }
 
 final class SearchDetailViewController: UIViewController, SearchDetailPresentable, SearchDetailViewControllable {
     
     // MARK: - Properties
     @IBOutlet weak var prevCollectionView: UICollectionView!
-    @IBOutlet weak var commtCollectionView: UICollectionView!
+    @IBOutlet weak var cmmtCollectionView: UICollectionView!
     @IBOutlet weak var infoTableView: UITableView!
     
     @IBOutlet weak var iconImgView: UIImageView!
@@ -45,6 +53,9 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var versionDateLabel: UILabel!
     @IBOutlet weak var userRatingLargeLabel: UILabel!
+    var sellerBtnLabel: UILabel!
+    var sellerBtnGuideLabel: UILabel!
+    var sellerBtnImgView: UIImageView!
     
     @IBOutlet weak var openButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
@@ -67,10 +78,16 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
     
     weak var listener: SearchDetailPresentableListener?
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         listener?.configureView(view: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -160,15 +177,26 @@ final class SearchDetailViewController: UIViewController, SearchDetailPresentabl
 extension SearchDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listener?.numberOfScreenShots() ?? 0
+        if collectionView == prevCollectionView {
+            return listener?.numberOfScreenShots() ?? 0
+        } else {
+            return 7
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prevCollectionCellId, for: indexPath) as? PrevCollectionViewCell else {
-            fatalError()
+        if collectionView == prevCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prevCollectionCellId, for: indexPath) as? PrevCollectionViewCell else {
+                fatalError()
+            }
+            listener?.configurePrevCollectionCell(indexPath: indexPath, cell: cell)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cmmtCollectionCellId, for: indexPath) as? CmmtCollectionViewCell else {
+                fatalError()
+            }
+            return cell
         }
-        listener?.configurePrevCollectionCell(indexPath: indexPath, cell: cell)
-        return cell
     }
     
     // MARK: - UICollectionViewDelegate
@@ -179,7 +207,11 @@ extension SearchDetailViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 210, height: 455)
+        if collectionView == prevCollectionView {
+            return CGSize(width: 210, height: 455)
+        } else {
+            return CGSize(width: view.frame.width * 0.85, height: 200)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -187,7 +219,33 @@ extension SearchDetailViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        if collectionView == prevCollectionView {
+            return 10
+        } else {
+            return 20
+        }
+    }
+}
+
+extension SearchDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    // MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listener?.numberOfInfos() ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: infoTableCellId, for: indexPath) as? InfoTableViewCell else {
+            fatalError()
+        }
+        listener?.configureInfoTableCell(indexPath: indexPath, cell: cell)
+        return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 7 {
+            listener?.openUrl(url: (listener?.infoDictAt(indexPath: indexPath)["content"])!, from: self)
+        }
     }
 }
 
@@ -209,9 +267,54 @@ extension SearchDetailViewController {
         
         reviewButton.titleLabel?.lineBreakMode = .byClipping
         
+        
+        sellerBtnLabel = {
+            let label = UILabel()
+            label.textColor = .systemBlue
+            label.font = .systemFont(ofSize: 14, weight: .regular)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        sellerBtnGuideLabel = {
+            let label = UILabel()
+            label.textColor = .systemGray
+            label.font = .systemFont(ofSize: 12, weight: .regular)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        sellerBtnImgView = {
+            let imgView = UIImageView()
+            let config = UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .regular, scale: .small)
+            imgView.image = UIImage(systemName: "chevron.right", withConfiguration: config)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+            imgView.translatesAutoresizingMaskIntoConstraints = false
+            return imgView
+        }()
+        sellerButton.addSubview(sellerBtnLabel)
+        sellerButton.addSubview(sellerBtnGuideLabel)
+        sellerButton.addSubview(sellerBtnImgView)
+        
+        sellerBtnLabel.topAnchor.constraint(equalTo: sellerButton.topAnchor, constant: 20).isActive = true
+        sellerBtnLabel.leadingAnchor.constraint(equalTo: sellerBtnLabel.leadingAnchor, constant: 0).isActive = true
+        
+        sellerBtnGuideLabel.topAnchor.constraint(equalTo: sellerBtnLabel.bottomAnchor, constant: 5).isActive = true
+        sellerBtnGuideLabel.leadingAnchor.constraint(equalTo: sellerBtnLabel.leadingAnchor, constant: 0).isActive = true
+        
+        sellerBtnImgView.topAnchor.constraint(equalTo: sellerButton.topAnchor, constant: 20).isActive = true
+        sellerBtnImgView.trailingAnchor.constraint(equalTo: sellerButton.trailingAnchor, constant: -20).isActive = true
+        
         prevCollectionView.register(UINib(nibName: prevCollectionCellId, bundle: nil), forCellWithReuseIdentifier: prevCollectionCellId)
+        
+        cmmtCollectionView.register(UINib(nibName: cmmtCollectionCellId, bundle: nil), forCellWithReuseIdentifier: cmmtCollectionCellId)
+        
+        infoTableView.register(UINib(nibName: infoTableCellId, bundle: nil), forCellReuseIdentifier: infoTableCellId)
         
         prevCollectionView.dataSource = self
         prevCollectionView.delegate = self
+        
+        cmmtCollectionView.dataSource = self
+        cmmtCollectionView.delegate = self
+        
+        infoTableView.dataSource = self
+        infoTableView.delegate = self
     }
 }
