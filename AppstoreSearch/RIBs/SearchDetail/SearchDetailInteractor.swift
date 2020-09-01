@@ -107,7 +107,7 @@ final class SearchDetailInteractor: PresentableInteractor<SearchDetailPresentabl
         let releaseNotes = itunseModel.releaseNotes?.replacingOccurrences(of: "\n\n", with: "\n\0")
         view.featureTextView.text = releaseNotes
         
-        let description = itunseModel.releaseNotes?.replacingOccurrences(of: "\n\n", with: "\n\0")
+        let description = itunseModel.description.replacingOccurrences(of: "\n\n", with: "\n\0")
         view.descTextView.text = description
     }
     
